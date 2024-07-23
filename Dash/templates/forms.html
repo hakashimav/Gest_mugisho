@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-{%load static%}
 <html>
 {%include 'Header2/head2.html'%}
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="{%static 'img/mugisho.svg'%}" alt=""></div>
+			<div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -221,89 +220,185 @@
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
-		<div class="pd-ltr-20">
-			<div class="card-box pd-20 height-100-p mb-30">
-				<div class="row align-items-center">
-					<div class="col-md-4">
-						<img src="{%static 'img/marte.png'%}" alt="">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+					<div class="pd-20 card-box mb-30">
+					<div class="clearfix">
+						<h4 class="text-blue h4">Nouvel enregistrement</h4>
+						<p class="mb-30">Cette opération est uniquement pour un nouveau client si le client existe déjà
+							<a href="task-add" data-toggle="modal" data-target="#task-add" class="btn text-blue"><i class="ion-plus-round"></i> cliqué ici</a>
+						 pour ajouter le dossier</p>
 					</div>
-					<div class="col-md-8">
-						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue">Johnny Brown!</div>
-						</h4>
-						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
+					<div class="wizard-content">
+						<form class="tab-wizard wizard-circle wizard">
+							<h5>Information sur le client</h5>
+							<section>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label >First Name :</label>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label >Last Name :</label>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Email Address :</label>
+											<input type="email" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Phone Number :</label>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Select City :</label>
+											<select class="custom-select form-control">
+												<option value="">Select City</option>
+												<option value="Amsterdam">India</option>
+												<option value="Berlin">UK</option>
+												<option value="Frankfurt">US</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label >Date of Birth :</label>
+											<input type="text" class="form-control date-picker" placeholder="Select Date">
+										</div>
+									</div>
+								</div>
+							</section>
+							<!-- Step 2 -->
+							<h5>Information sur le dossier</h5>
+							<section>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Job Title :</label>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Company Name :</label>
+											<input type="text" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label>Job Description :</label>
+											<textarea class="form-control"></textarea>
+										</div>
+									</div>
+								</div>
+							</section>
+							<!-- Step 3 -->
+							<h5>Enregistré le paiement</h5>
+							<section>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Interview For :</label>
+											<input type="text" class="form-control">
+										</div>
+										<div class="form-group">
+											<label>Interview Type :</label>
+											<select class="form-control">
+												<option>Normal</option>
+												<option>Difficult</option>
+												<option>Hard</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Interview Date :</label>
+											<input type="text" class="form-control date-picker" placeholder="Select Date">
+										</div>
+										<div class="form-group">
+											<label>Interview Time :</label>
+											<input class="form-control time-picker" placeholder="Select time" type="text">
+										</div>
+									</div>
+								</div>
+							</section>
+						</form>
+						<!-- add task popup start -->
+						<div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Tasks Add</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close Modal">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body pd-0">
+										<div class="task-list-form">
+											<ul>
+												<li>
+													<form>
+														<div class="form-group row">
+															<label class="col-md-4">Assigned to</label>
+															<div class="col-md-8">
+																<select class="selectpicker form-control" data-style="btn-outline-primary" title="Not Chosen" multiple="" data-selected-text-format="count" data-count-selected-text= "{0} people selected">
+																	<option>Ferdinand M.</option>
+																	<option>Don H. Rabon</option>
+																	<option>Ann P. Harris</option>
+																	<option>Katie D. Verdin</option>
+																	<option>Christopher S. Fulghum</option>
+																	<option>Matthew C. Porter</option>
+																</select>
+															</div>
+														</div>
+														<div class="form-group row">
+															<label class="col-md-4">Task Type</label>
+															<div class="col-md-8">
+																<input type="text" class="form-control">
+															</div>
+														</div>
+														<div class="form-group row">
+															<label class="col-md-4">Task Message</label>
+															<div class="col-md-8">
+																<textarea class="form-control"></textarea>
+															</div>
+														</div>
+														<div class="form-group row mb-0">
+															<label class="col-md-4">Due Date</label>
+															<div class="col-md-8">
+																<input type="text" class="form-control date-picker">
+															</div>
+														</div>
+													</form>
+												</li>
+											</ul>
+										</div>
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary">Add</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- add task popup End -->
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">2020</div>
-								<div class="weight-600 font-14">Contact</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">400</div>
-								<div class="weight-600 font-14">Deals</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">350</div>
-								<div class="weight-600 font-14">Campaign</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">$6060</div>
-								<div class="weight-600 font-14">Worth</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-8 mb-30">
-					<div class="card-box height-100-p pd-20">
-						<h2 class="h4 mb-20">Activity</h2>
-						<div id="chart5"></div>
-					</div>
-				</div>
-				<div class="col-xl-4 mb-30">
-					<div class="card-box height-100-p pd-20">
-						<h2 class="h4 mb-20">Lead Target</h2>
-						<div id="chart6"></div>
-					</div>
-				</div>
-			</div>
-			
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
 			</div>

@@ -19,5 +19,6 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path('', views.index, name="Dashboard" ),
-    path('datatable/', views.datatable, name="datatable")
+    path('datatable/', views.datatable, name="datatable"),
+    path('forms/',views.forms,name="forms")
 ]
