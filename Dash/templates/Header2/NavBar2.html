@@ -2,7 +2,7 @@
 
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a href="/">
+        <a href="#">
             <img src="{%static 'img/mugisho.svg'%}" style="width: 50px;" class="dark-logo">
             <img src="{%static 'img/mugisho.svg'%}" alt="" style="width: 50px;" class="light-logo">
         </a>
@@ -24,13 +24,18 @@
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="{%url 'datatable'%}" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-library"></span><span class="mtext">Tables</span>
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-library"></span><span class="mtext">Etat en sortie</span>
                     </a>
+                    <ul class="submenu">
+                        <li><a href="{%url 'datatable'%}">Général</a></li>
+                        <li><a href="datatable.html">Par filtre</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="calendar.html" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-calendar1"></span><span class="mtext">Calendar</span>
+                        <span class="micon dw dw-folder"></span><span class="mtext">Mes Dossiers</span>
+                        
                     </a>
                 </li>
         

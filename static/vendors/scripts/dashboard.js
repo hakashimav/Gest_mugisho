@@ -1,5 +1,7 @@
+val = document.getElementById('valchart')
+v = val.value
 var options = {
-	series: [80],
+	series: [v],
 	grid: {
 		padding: {
 			top: 0,

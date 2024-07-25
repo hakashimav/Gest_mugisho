@@ -1,5 +1,5 @@
 $(".dial1").knob();
-$({animatedVal: 0}).animate({animatedVal: 80}, {
+$({animatedVal: 0}).animate({animatedVal: 50}, {
 	duration: 3000,
 	easing: "swing",
 	step: function() {
