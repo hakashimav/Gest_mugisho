@@ -15,9 +15,12 @@ class Dossier(models.Model):
 class Client(models.Model):
     NumCleint=models.IntegerField(auto_created=True)
     EtatciviCleint=models.CharField(max_length=20,null=True,blank=True)
-    AttentDoss=models.CharField(max_length=150,null=True,blank=True)
+    NomClient=models.CharField(max_length=150,null=True,blank=True)
+    PostnomClient=models.CharField(max_length=150,null=True,blank=True)
+    PrenonCient=models.CharField(max_length=150,null=True,blank=True)
     LieunClient=models.CharField(max_length=150,null=True,blank=True)
     etaClient=models.CharField(max_length=150,null=True,blank=True)
+    telClien=models.IntegerField()
     Numrccm=models.IntegerField()
     QualClient=models.CharField(max_length=150,null=True,blank=True)
     FaxClient=models.IntegerField()
