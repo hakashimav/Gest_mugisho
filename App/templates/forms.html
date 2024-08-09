@@ -137,53 +137,81 @@
 						 pour ajouter le dossier</p>
 					</div>
 					<div class="wizard-content">
-						<form class="tab-wizard wizard-circle wizard">
+						<form class="tab-wizard wizard-circle wizard" action="#" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
 							<h5>Information sur le client</h5>
 							<section>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label >First Name :</label>
-											<input type="text" class="form-control">
+											<label >Prénom :</label>
+											<input type="text" name="prenom" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label >Last Name :</label>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Email Address :</label>
-											<input type="email" class="form-control">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Phone Number :</label>
-											<input type="text" class="form-control">
+											<label >Nom :</label>
+											<input type="text" name="nom" class="form-control">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Select City :</label>
-											<select class="custom-select form-control">
-												<option value="">Select City</option>
-												<option value="Amsterdam">India</option>
-												<option value="Berlin">UK</option>
-												<option value="Frankfurt">US</option>
+											<label>Post-nom :</label>
+											<input type="text" name="postnom" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Téléphone :</label>
+											<input type="text" name="telclient" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Adresse mail :</label>
+											<input type="email" name="mail" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Numéron RCCM :</label>
+											<input type="text" name="numrccm" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Genre :</label>
+											<select name="genre" class="custom-select form-control">
+												<option value="">Homme</option>
+												<option value="Amsterdam">Femme</option>
+												<option value="Berlin">Autre</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label >Date of Birth :</label>
-											<input type="text" class="form-control date-picker" placeholder="Select Date">
+											<label>Etat Civil :</label>
+											<select name="EtatciviCleint" class="custom-select form-control">
+												<option value="">Marié</option>
+												<option value="Amsterdam">Divorcé</option>
+												<option value="Berlin">Célibataire</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label >Qualité client :</label>
+											<input type="text" name="QualClient" class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label >Lieu de naissance :</label>
+											<input type="text" name="LieunClient" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -194,20 +222,20 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Job Title :</label>
-											<input type="text" class="form-control">
+											<label>Elément du dossier :</label>
+											<input type="text" name="ElemDoss" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Company Name :</label>
-											<input type="text" class="form-control">
+											<label>Attente dossier :</label>
+											<input type="text" name="AttentDoss" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<label>Job Description :</label>
-											<textarea class="form-control"></textarea>
+											<label>Avis sur le dossier :</label>
+											<textarea name="AvisDoss" class="form-control"></textarea>
 										</div>
 									</div>
 								</div>
@@ -218,30 +246,34 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Interview For :</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Interview Type :</label>
-											<select class="form-control">
-												<option>Normal</option>
-												<option>Difficult</option>
-												<option>Hard</option>
-											</select>
+											<label>Montant :</label>
+											<input type="number" name="MontPaiem" class="form-control">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Interview Date :</label>
-											<input type="text" class="form-control date-picker" placeholder="Select Date">
-										</div>
-										<div class="form-group">
-											<label>Interview Time :</label>
-											<input class="form-control time-picker" placeholder="Select time" type="text">
+											<label>Motif Paiement :</label>
+											<input type="text" name="MotifPaiem" class="form-control">
 										</div>
 									</div>
 								</div>
 							</section>
+							<!-- success Popup html Start -->
+							<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-body text-center font-18">
+											<h3 class="mb-20">Formualaire soumis!</h3>
+											<div class="mb-30 text-center"><img src="{%static 'vendors/images/success.png'%}"></div>
+											Cliqué sur ok pour validé
+										</div>
+										<div class="modal-footer justify-content-center">
+											<button type="submit" class="btn btn-primary" >Ok</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- success Popup html End -->
 						</form>
 						<!-- add task popup start -->
 						<div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
@@ -257,9 +289,10 @@
 										<div class="task-list-form">
 											<ul>
 												<li>
-													<form>
+													<form action="#" method="post" enctype="multipart/form-data">
+														{% csrf_token %}
 														<div class="form-group row">
-															<label class="col-md-4">Assigned to</label>
+															<label class="col-md-4">Client</label>
 															<div class="col-md-8">
 																<select class="selectpicker form-control" data-style="btn-outline-primary" title="Not Chosen" multiple="" data-selected-text-format="count" data-count-selected-text= "{0} people selected">
 																	<option>Ferdinand M.</option>
@@ -272,22 +305,38 @@
 															</div>
 														</div>
 														<div class="form-group row">
-															<label class="col-md-4">Task Type</label>
+															<label class="col-md-4">Elément du dossier</label>
 															<div class="col-md-8">
-																<input type="text" class="form-control">
+																<input type="text" name="ElemDoss" class="form-control">
 															</div>
 														</div>
 														<div class="form-group row">
-															<label class="col-md-4">Task Message</label>
+															<label class="col-md-4">Attente dossier</label>
 															<div class="col-md-8">
-																<textarea class="form-control"></textarea>
+																<input type="text" name="AttentDoss" class="form-control">
+															</div>
+														</div>
+														<div class="form-group row">
+															<label class="col-md-4">Avis sur le dossier</label>
+															<div class="col-md-8">
+																<textarea name="AvisDoss" class="form-control"></textarea>
+															</div>
+														</div>
+														<div class="form-group row">
+															<label class="col-md-4">Montant</label>
+															<div class="col-md-8">
+																<input type="number" class="form-control">
 															</div>
 														</div>
 														<div class="form-group row mb-0">
-															<label class="col-md-4">Due Date</label>
+															<label class="col-md-4">Motif Paiement</label>
 															<div class="col-md-8">
-																<input type="text" class="form-control date-picker">
+																<input type="text" name="MotifPaiem" class="form-control">
 															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-primary">Add</button>
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 														</div>
 													</form>
 												</li>
@@ -295,10 +344,7 @@
 										</div>
 										
 									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-primary">Add</button>
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -316,7 +362,7 @@
 	<script src="{%static 'vendors/scripts/script.min.js'%}"></script>
 	<script src="{%static 'vendors/scripts/process.js'%}"></script>
 	<script src="{%static 'vendors/scripts/layout-settings.js'%}"></script>
-	<script src="{%static 'src/plugins/jquery-steps/jquery.steps.js'%}"></script>
+	<script src="{%static 'src/plugins/jquery-steps/jquery.steps.Js'%}"></script>
 	<script src="{%static 'vendors/scripts/steps-setting.js'%}"></script>
 </body>
 </html>
