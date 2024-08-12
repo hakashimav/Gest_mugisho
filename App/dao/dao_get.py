@@ -1,0 +1,9 @@
+from App.models import *
+
+class dao_get(object):
+    @staticmethod
+    def getIdClient():
+        try:
+            return Client.objects.all().last()
+        except:
+            return None

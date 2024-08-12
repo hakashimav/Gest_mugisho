@@ -131,13 +131,13 @@
 			<div class="min-height-200px">
 					<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Nouvel enregistrement</h4>
+						<h4 class="text-blue h4">Nouvel enregistrement {{a}}</h4>
 						<p class="mb-30">Cette opération est uniquement pour un nouveau client si le client existe déjà
 							<a href="task-add" data-toggle="modal" data-target="#task-add" class="btn text-blue"><i class="ion-plus-round"></i> cliqué ici</a>
 						 pour ajouter le dossier</p>
 					</div>
 					<div class="wizard-content">
-						<form class="tab-wizard wizard-circle wizard" action="#" method="post" enctype="multipart/form-data">
+						<form class="tab-wizard wizard-circle wizard" action="{%url 'formSend'%}" method="post" enctype="multipart/form-data">
 							{% csrf_token %}
 							<h5>Information sur le client</h5>
 							<section>
@@ -186,9 +186,9 @@
 										<div class="form-group">
 											<label>Genre :</label>
 											<select name="genre" class="custom-select form-control">
-												<option value="">Homme</option>
-												<option value="Amsterdam">Femme</option>
-												<option value="Berlin">Autre</option>
+												<option value="Homme">Homme</option>
+												<option value="Femme">Femme</option>
+												<option value="Autre">Autre</option>
 											</select>
 										</div>
 									</div>
@@ -196,9 +196,9 @@
 										<div class="form-group">
 											<label>Etat Civil :</label>
 											<select name="EtatciviCleint" class="custom-select form-control">
-												<option value="">Marié</option>
-												<option value="Amsterdam">Divorcé</option>
-												<option value="Berlin">Célibataire</option>
+												<option value="Marié">Marié</option>
+												<option value="Divorcé">Divorcé</option>
+												<option value="Célibataire">Célibataire</option>
 											</select>
 										</div>
 									</div>
@@ -263,7 +263,7 @@
 								<div class="modal-dialog modal-dialog-centered" role="document">
 									<div class="modal-content">
 										<div class="modal-body text-center font-18">
-											<h3 class="mb-20">Formualaire soumis!</h3>
+											<h3 class="mb-20">Formulaire soumis!</h3>
 											<div class="mb-30 text-center"><img src="{%static 'vendors/images/success.png'%}"></div>
 											Cliqué sur ok pour validé
 										</div>

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Dossier(models.Model):
-    NumDoss=models.IntegerField(auto_created=True)
+    NumDoss=models.IntegerField(auto_created=True,null=True)
     ElemDoss=models.CharField(max_length=150,null=True,blank=True)
     AttentDoss=models.CharField(max_length=150,null=True,blank=True)
     AvisDoss=models.CharField(max_length=150,null=True,blank=True)
@@ -13,17 +13,17 @@ class Dossier(models.Model):
 
 
 class Client(models.Model):
-    NumCleint=models.IntegerField(auto_created=True)
+    NumCleint=models.IntegerField(null=True,blank=True)
     EtatciviCleint=models.CharField(max_length=20,null=True,blank=True)
     NomClient=models.CharField(max_length=150,null=True,blank=True)
     PostnomClient=models.CharField(max_length=150,null=True,blank=True)
     PrenonCient=models.CharField(max_length=150,null=True,blank=True)
     LieunClient=models.CharField(max_length=150,null=True,blank=True)
     etaClient=models.CharField(max_length=150,null=True,blank=True)
-    NumClien=models.IntegerField()
-    Numrccm=models.IntegerField()
+    NumClien=models.IntegerField(null=True,blank=True)
+    Numrccm=models.IntegerField(null=True,blank=True)
     QualClient=models.CharField(max_length=150,null=True,blank=True)
-    FaxClient=models.IntegerField()
+    FaxClient=models.IntegerField(null=True,blank=True)
     Date_create=models.DateTimeField(auto_now_add=True)
     NumAct=models.ForeignKey('Acteur', related_name='ActClient', null=True, blank=True, on_delete=models.CASCADE)
     CodeNatcl=models.ForeignKey('Nationalite', related_name='NatClient', null=True, blank=True, on_delete=models.CASCADE)
@@ -32,7 +32,7 @@ class Client(models.Model):
 
 
 class Paiement(models.Model):
-    NumPaiem=models.IntegerField(auto_created=True)
+    NumPaiem=models.IntegerField(auto_created=True,null=True)
     MontPaiem=models.IntegerField()
     MotifPaiem=models.CharField(max_length=150,null=True,blank=True)
     NumCleint=models.ForeignKey('Client', related_name='PaiemCleint', null=True, blank=True, on_delete=models.CASCADE)
@@ -40,7 +40,7 @@ class Paiement(models.Model):
 
 
 class Nationalite(models.Model):
-    CodeNatcl=models.IntegerField(auto_created=True)
+    CodeNatcl=models.IntegerField(auto_created=True,null=True)
     LibNatcl=models.CharField(max_length=150,null=True,blank=True)
 
 
@@ -62,7 +62,7 @@ class Nature_consultation(models.Model):
 
 
 class Acteur(models.Model):
-    NumAct=models.IntegerField(auto_created=True)
+    NumAct=models.IntegerField(auto_created=True,default=True)
     NomAct=models.CharField(max_length=150,null=True,blank=True)
     PostnomAct=models.CharField(max_length=150,null=True,blank=True)
     PrenAct=models.CharField(max_length=150,null=True,blank=True)
@@ -82,7 +82,7 @@ class Concerner(models.Model):
 class Consultation(models.Model):
     NumConsult=models.IntegerField(auto_created=True)
     CodeNatur=models.ForeignKey('Nature_consultation', related_name='NaturConsult', null=True, blank=True, on_delete=models.CASCADE)
-    NumPaiem=models.ForeignKey('Paiement', related_name='PaiemConsult', null=True, blank=True, on_delete=models.CASCADE)
+    NumPaiem=models.ForeignKey('Paiement', related_name='PaiemConsult', blank=True, on_delete=models.CASCADE)
     Date_create=models.DateTimeField(auto_now_add=True)
 
 
