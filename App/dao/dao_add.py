@@ -1,13 +1,6 @@
 from App.models import *
 
 class dao_Add(object):
-    def addClient(_prenom,_nom,_postnom,_telclient,_mail,_numrccm,_genre,_EtatciviCleint,_QualClient,_LieunClient):
-        try:
-            ClientModels = Client(PrenonCient=_prenom,NomClient=_nom,PostnomClient=_postnom,LieunClient=_LieunClient,etaClient=_genre,EtatciviCleint=_EtatciviCleint,NumClien=_telclient,Numrccm=_numrccm,QualClient=_QualClient,FaxClient=_mail)
-            ClientModels.save()
-            return ClientModels
-        except Exception as e:
-            return e
         
     @staticmethod
     def addDossier(ElemDoss,AttentDoss,AvisDoss,numClient):
@@ -24,5 +17,14 @@ class dao_Add(object):
             PaiementModels = Paiement(MontPaiem=MontPaiem,MotifPaiem=MotifPaiem,NumCleint_id=numClient)
             PaiementModels.save()
             return PaiementModels
+        except Exception as e:
+            return e
+        
+    @staticmethod
+    def addClients(_PrenonCient,_NomClient,_PostnomClient,_LieunClient,_etaClient,_EtatciviCleint,_NumClien,_Numrccm,_QualClient,_FaxClient):
+        try:
+            ClientModels = Client(PrenonCient=_PrenonCient,NomClient=_NomClient,PostnomClient=_PostnomClient,LieunClient=_LieunClient,etaClient=_etaClient,EtatciviCleint=_EtatciviCleint,NumClien=_NumClien,Numrccm=_Numrccm,QualClient=_QualClient,FaxClient=_FaxClient)
+            ClientModels.save()
+            return ClientModels
         except Exception as e:
             return e

@@ -19,8 +19,9 @@ def datatable(request):
 
 def forms(request):
     try:
+        getClient = dao_get.getClient()
 
-        context = {}
+        context = {"Client":getClient}
         template = loader.get_template('forms.html')
         return HttpResponse(template.render(context, request))
     
@@ -29,6 +30,7 @@ def forms(request):
     
 def formSend(request):
     try:
+        get_idClient = ""
         if request.method == "POST":
             # data for client
             prenom = request.POST.get('prenom', None)
@@ -50,21 +52,53 @@ def formSend(request):
             # data for paiement
             MontPaiem = request.POST.get('MontPaiem', None)
             MotifPaiem = request.POST.get('MotifPaiem', None)
+            
 
             # save the data send for client
-            dao_Add.addClient(prenom,nom,postnom,telclient,mail,numrccm,genre,EtatciviCleint,QualClient,LieunClient)
-
-            # # get the last id from table client
-            get_idClient = dao_get.getIdClient()
+            data = dao_Add.addClients(prenom,nom,postnom,LieunClient,genre,EtatciviCleint,telclient,numrccm,QualClient,mail)
+            if data:
+                # # get the last id from table client
+                get_idClient = dao_get.getIdClient()
 
             # # save the data send for dossier
-            # dao_Add.addDossier(ElemDoss,AttentDoss,AvisDoss,get_idClient)
+            dao_Add.addDossier(ElemDoss,AttentDoss,AvisDoss,get_idClient.id)
 
             # # save the data send for paiement
-            # dao_Add.addPaiement(MontPaiem,MotifPaiem,get_idClient)
+            dao_Add.addPaiement(MontPaiem,MotifPaiem,get_idClient.id)
 
+        getClient = dao_get.getClient()
 
-        context = {'a':prenom}
+        context = {"Client":getClient}
+        template = loader.get_template('forms.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
+    
+
+def formsSave(request):
+    try:
+        if request.method == "POST":
+            
+            ClientId = request.POST.get('Client', None)
+            # data for dossier
+            ElemDoss = request.POST.get('ElemDoss', None)
+            AttentDoss = request.POST.get('AttentDoss', None)
+            AvisDoss = request.POST.get('AvisDoss', None)
+
+            # data for paiement
+            MontPaiem = request.POST.get('MontPaiem', None)
+            MotifPaiem = request.POST.get('MotifPaiem', None)
+            
+            # # save the data send for dossier
+            dao_Add.addDossier(ElemDoss,AttentDoss,AvisDoss,ClientId)
+
+            # # save the data send for paiement
+            dao_Add.addPaiement(MontPaiem,MotifPaiem,ClientId)
+
+        getClient = dao_get.getClient()
+
+        context = {"Client":getClient}
         template = loader.get_template('forms.html')
         return HttpResponse(template.render(context, request))
     

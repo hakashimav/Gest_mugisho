@@ -13,17 +13,16 @@ class Dossier(models.Model):
 
 
 class Client(models.Model):
-    NumCleint=models.IntegerField(null=True,blank=True)
-    EtatciviCleint=models.CharField(max_length=20,null=True,blank=True)
+    PrenonCient=models.CharField(max_length=150,null=True,blank=True)
     NomClient=models.CharField(max_length=150,null=True,blank=True)
     PostnomClient=models.CharField(max_length=150,null=True,blank=True)
-    PrenonCient=models.CharField(max_length=150,null=True,blank=True)
     LieunClient=models.CharField(max_length=150,null=True,blank=True)
     etaClient=models.CharField(max_length=150,null=True,blank=True)
+    EtatciviCleint=models.CharField(max_length=20,null=True,blank=True)
     NumClien=models.IntegerField(null=True,blank=True)
     Numrccm=models.IntegerField(null=True,blank=True)
     QualClient=models.CharField(max_length=150,null=True,blank=True)
-    FaxClient=models.IntegerField(null=True,blank=True)
+    FaxClient=models.CharField(max_length=150,null=True,blank=True)
     Date_create=models.DateTimeField(auto_now_add=True)
     NumAct=models.ForeignKey('Acteur', related_name='ActClient', null=True, blank=True, on_delete=models.CASCADE)
     CodeNatcl=models.ForeignKey('Nationalite', related_name='NatClient', null=True, blank=True, on_delete=models.CASCADE)

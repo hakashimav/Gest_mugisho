@@ -7,3 +7,10 @@ class dao_get(object):
             return Client.objects.all().last()
         except:
             return None
+        
+    @staticmethod
+    def getClient():
+        try:
+            return Client.objects.all()
+        except:
+            return None
