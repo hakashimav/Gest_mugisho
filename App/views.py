@@ -11,9 +11,15 @@ def index(request):
 
 
 def datatable(request):
-    context = {}
-    template = loader.get_template('datatable.html')
-    return HttpResponse(template.render(context, request))
+    try:
+        getClient = dao_get.getClient()
+
+        context = {"Client":getClient}
+        template = loader.get_template('datatable.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
 
 
 
