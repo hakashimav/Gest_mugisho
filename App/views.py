@@ -22,6 +22,17 @@ def datatable(request):
         return e
 
 
+def mesdossier(request):
+    try:
+
+        context = {}
+        template = loader.get_template('mesdossier.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
+
+
 
 def forms(request):
     try:
