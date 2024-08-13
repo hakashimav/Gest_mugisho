@@ -21,3 +21,10 @@ class dao_get(object):
             return Dossier.objects.all()
         except:
             return None
+        
+    @staticmethod
+    def getAvocat():
+        try:
+            return Avocat.objects.all()
+        except:
+            return None

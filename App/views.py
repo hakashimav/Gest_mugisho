@@ -35,9 +35,14 @@ def mesdossier(request):
         return e
     
 def datadossier(request):
-    context = {}
-    template = loader.get_template('datadossier.html')
-    return HttpResponse(template.render(context, request))
+    try:
+        getAvocat = dao_get.getAvocat()
+        getDossier = dao_get.getDossier()
+        context = {"Dossier":getDossier,"Avocat":getAvocat}
+        template = loader.get_template('datadossier.html')
+        return HttpResponse(template.render(context, request))
+    except Exception as e:
+        return e
 
 
 def forms(request):
