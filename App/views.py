@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.template import loader
 from App.dao.dao_add import dao_Add
 from App.dao.dao_get import dao_get
+
 # Create your views here.
+
 def index(request):
     context = {}
     template = loader.get_template('index2.html')
@@ -31,7 +33,11 @@ def mesdossier(request):
     
     except Exception as e:
         return e
-
+    
+def datadossier(request):
+    context = {}
+    template = loader.get_template('datadossier.html')
+    return HttpResponse(template.render(context, request))
 
 
 def forms(request):
