@@ -9,6 +9,7 @@ class Dossier(models.Model):
     AvisDoss=models.CharField(max_length=150,null=True,blank=True)
     Date_create=models.DateTimeField(auto_now_add=True)
     Numclient=models.ForeignKey('Client', related_name='DosCleint', null=True, blank=True, on_delete=models.CASCADE)
+    NumAvocat=models.ForeignKey('Avocat', related_name='AvocDos', null=True, blank=True, on_delete=models.CASCADE)
 
 
 
