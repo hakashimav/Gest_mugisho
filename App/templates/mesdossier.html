@@ -146,34 +146,83 @@
 					</div>
 					<div class="contact-directory-list">
 						<ul class="row">
+							{%for Dossiers in Dossier%}
 							<li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 								<div class="contact-directory-box">
 									<div class="contact-dire-info text-center">
-										<div class="contact-avatar">
-											<span>
-												<img src="{%static 'vendors/images/photo2.jpg'%}" alt="">
-											</span>
-										</div>
+										
+										<span class="micon dw dw-folder"></span>
+										
 										<div class="contact-name">
-											<h4>Wade Wilson</h4>
-											<p>UI/UX designer</p>
-											<div class="work text-success"><i class="ion-android-person"></i> Freelancer</div>
+											<h4>{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</h4>
+											<p>{{Dossiers.Date_create.date}}</p>
 										</div>
 										<div class="contact-skill">
-											<span class="badge badge-pill">UI</span>
-											<span class="badge badge-pill">UX</span>
-											<span class="badge badge-pill">Photoshop</span>
-											<span class="badge badge-pill badge-primary">+ 8</span>
+											<div class="work text-success"><i class="icon-copy fa fa-newspaper-o" aria-hidden="true"></i> Element du dossier</div>
+											<p>{{Dossiers.ElemDoss}}</p>
+										</div>
+										<div class="contact-skill">
+											<div class="work text-success"><i class="icon-copy fa fa-hourglass-half" aria-hidden="true"></i> Niveau du dossier</div>
+											<p>{{Dossiers.AttentDoss}}</p>
 										</div>
 										<div class="profile-sort-desc">
-											Lorem ipsum dolor sit amet, consectetur adipisicing magna aliqua.
 										</div>
 									</div>
 									<div class="view-contact">
-										<a href="#">View Profile</a>
+										<a href="task-add" data-toggle="modal" data-target="#task-add">Fixé un rendez-vous</a>
 									</div>
 								</div>
+								<!-- add task popup start -->
+								<div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">Fixé un rendez-vous</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close Modal">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body pd-0">
+												<div class="task-list-form">
+													<ul>
+														<li>
+															<form action="#" method="post" enctype="multipart/form-data">
+																{% csrf_token %}
+																<div class="form-group row">
+																	<label class="col-md-4">Motif du Rendez-vous</label>
+																	<div class="col-md-8">
+																		<input type="text" name="MotifRendez" class="form-control">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-md-4">Observation</label>
+																	<div class="col-md-8">
+																		<input type="text" name="ObserRendez" class="form-control">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-md-4">Heure du Rendez-vous</label>
+																	<div class="form-group">
+																		<input name="HeureRendez" class="form-control time-picker-default" placeholder="time" type="text">
+																	</div>
+																</div>
+																<div class="modal-footer">
+																	<button type="submit" class="btn btn-primary">Valider</button>
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																</div>
+															</form>
+														</li>
+													</ul>
+												</div>
+												
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- add task popup End -->
 							</li>
+							{%endfor%}
 						</ul>
 					</div>
 				</div>

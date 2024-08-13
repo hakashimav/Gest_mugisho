@@ -14,3 +14,10 @@ class dao_get(object):
             return Client.objects.all()
         except:
             return None
+        
+    @staticmethod
+    def getDossier():
+        try:
+            return Dossier.objects.all()
+        except:
+            return None

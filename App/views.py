@@ -24,8 +24,8 @@ def datatable(request):
 
 def mesdossier(request):
     try:
-
-        context = {}
+        getDossier = dao_get.getDossier()
+        context = {"Dossier":getDossier}
         template = loader.get_template('mesdossier.html')
         return HttpResponse(template.render(context, request))
     
