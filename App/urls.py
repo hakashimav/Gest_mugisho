@@ -24,5 +24,6 @@ urlpatterns = [
     path('forms-send',views.formSend,name="formSend"),
     path('forms-send/',views.formsSave,name="formsSave"),
     path('Mes-dossier/',views.mesdossier,name="mesdossier"),
-    path('datatable-dossier/',views.datadossier,name="datadossier")
+    path('datatable-dossier/',views.datadossier,name="datadossier"),
+    path('affecter-dossier/',views.sendDate,name="sendDate")
 ]

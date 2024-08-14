@@ -179,7 +179,7 @@
 									<td class="table-plus">{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</td>
 									<td>{{Dossiers.ElemDoss}}</td>
 									<td>{{Dossiers.AttentDoss}}</td>
-									<td>{{Dossiers.Date_create.date}}</td>
+									<td>{{Dossiers.Date_create.date}}</td> 
 									<td>29-03-2018</td>
 									<td>
 										<div class="dropdown">
@@ -207,8 +207,9 @@
                                                     <div class="task-list-form ">
                                                         <ul>
                                                             <li>
-                                                                <form>
-                                                                    <div class="row">
+                                                                <form action="{%url 'sendDate'%}" method="post" enctype="multipart/form-data">
+                                                                    {% csrf_token %}
+																	<div class="row">
                                                                         <div class="col-md-12">
                                                                             <div class="form-group">
                                                                                 <label>Avocat</label>
@@ -218,6 +219,7 @@
                                                                                     {%endfor%}
                                                                                 </select>
                                                                             </div>
+																			<input type="number" name="idDossier" value="{{Dossiers.id}}" hidden>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
