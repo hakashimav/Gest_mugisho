@@ -165,7 +165,8 @@
 						<table class="data-table table stripe hover nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Noms</th>
+									<th class="table-plus datatable-nosort">N°</th>
+									<th>Noms</th>
 									<th>Elément du dossier</th>
 									<th>Niveau du dossier</th>
 									<th>Création</th>
@@ -176,7 +177,8 @@
 							<tbody>
                                 {%for Dossiers in Dossier%}
 								<tr>
-									<td class="table-plus">{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</td>
+									<td class="table-plus">{{Dossiers.id}}</td>
+									<td>{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</td>
 									<td>{{Dossiers.ElemDoss}}</td>
 									<td>{{Dossiers.AttentDoss}}</td>
 									<td>{{Dossiers.Date_create.date}}</td> 
