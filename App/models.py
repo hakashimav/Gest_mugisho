@@ -10,7 +10,7 @@ class Dossier(models.Model):
     Date_create=models.DateTimeField(auto_now_add=True)
     Numclient=models.ForeignKey('Client', related_name='DosCleint', null=True, blank=True, on_delete=models.CASCADE)
     NumAvocat=models.ForeignKey('Avocat', related_name='AvocDos', null=True, blank=True, on_delete=models.CASCADE)
-
+    is_ready=models.BooleanField(default=False)
 
 
 class Client(models.Model):
