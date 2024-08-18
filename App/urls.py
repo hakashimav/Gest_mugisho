@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from . import views
 urlpatterns = [
     path('', views.index, name="Dashboard" ),
@@ -25,5 +25,8 @@ urlpatterns = [
     path('forms-send/',views.formsSave,name="formsSave"),
     path('Mes-dossier/',views.mesdossier,name="mesdossier"),
     path('datatable-dossier/',views.datadossier,name="datadossier"),
-    path('affecter-dossier/',views.sendDate,name="sendDate")
+    re_path(r'^data-avocat/(?P<id>\w+)/$',views.dataAvocat,name="dataAvocat"),
+    re_path(r'^affecter-dossier/(?P<id>\w+)/$',views.sendDate,name="sendDate"),
+    # re_path(r'^affecter-dossier/(?P<id>\w+)/$', views.sendDate,name="sendDate"),
+
 ]

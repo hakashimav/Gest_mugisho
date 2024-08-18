@@ -44,22 +44,31 @@ def datadossier(request):
     except Exception as e:
         return e
 
-def sendDate(request):
+def sendDate(request,id):
     try:
         if request.method == "POST":
-            Avocat = request.POST.get('Avocat', None)
+            NumAvocat = request.POST.get('NumAvocat', None)
             idDossier = request.POST.get('idDossier', None)
-
-            dao_get.getDossierById(idDossier,Avocat)
-
-        getAvocat = dao_get.getAvocat()
-        getDossier = dao_get.getDossier()
-        context={"Dossier":getDossier,"Avocat":getAvocat,'a':idDossier}
-        template = loader.get_template('datadossier.html')
-        return HttpResponse(template.render(context, request))
+            data = dao_get.getDossierById(idDossier,NumAvocat)
+            if data:
+                getDossier = dao_get.getDossier()
+                context={"Dossier":getDossier}
+                template = loader.get_template('datadossier.html')
+                return HttpResponse(template.render(context, request))
     except Exception as e:
         return e
 
+
+def dataAvocat(request,id):
+    try:
+        getAvocat = dao_get.getAvocat()
+        idDossier = id
+        context = {'Avocat':getAvocat,"idDossier":idDossier}
+        template = loader.get_template('dataAvocat.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
 
 
 def forms(request):

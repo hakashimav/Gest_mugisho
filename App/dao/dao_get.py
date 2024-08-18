@@ -22,6 +22,7 @@ class dao_get(object):
         except:
             return None
         
+            
     @staticmethod
     def getAvocat():
         try:
@@ -34,6 +35,7 @@ class dao_get(object):
         try:
             dos = Dossier.objects.get(id=id)
             dos.NumAvocat_id=NumAvocat
+            dos.is_ready = True
             dos.save()
             return dos
         except:

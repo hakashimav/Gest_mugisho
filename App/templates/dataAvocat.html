@@ -165,39 +165,30 @@
 						<table class="data-table table stripe hover nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">N°</th>
-									<th>Noms</th>
-									<th>Elément du dossier</th>
-									<th>Niveau du dossier</th>
-									<th>Création</th>
-									<th>Statut</th>
+									<th>Prénom</th>
+									<th>Nom</th>
+									<th>Post-nom</th>
+									<th>Téléphone</th>
+									<th>Adresse mail</th>
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-                                {%for Dossiers in Dossier%}
+                                {%for Avocats in Avocat%}
 								<tr>
-									<td>{{Dossiers.id}}</td>
-									<td class="table-plus">{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</td>
-									<td>{{Dossiers.ElemDoss}}</td>
-									<td>{{Dossiers.AttentDoss}}</td>
-									<td>{{Dossiers.Date_create.date}}</td>
-									{%if Dossiers.is_ready == True%}
-									<td><span class="badge badge-success">Affecté</span></td>
-									{%else%}
-									<td><span class="badge badge-secondary">Non affecter</span></td>
-									{%endif%}
+									<td class="table-plus">{{Avocats.PrenAct}}</td>
+									<td>{{Avocats.NomAct}}</td>
+									<td>{{Avocats.PostnomAct}}</td>
+									<td>{{Avocats.TelAct}}</td>
+                                    <td>{{Avocats.EmailAct}}</td>
 									<td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item"  href="{%url 'dataAvocat' Dossiers.id %}"><i class="dw dw-edit2"></i> Affecter</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
+										<form action="{%url 'sendDate' idDossier%}" method="post" enctype="multipart/form-data">
+											{% csrf_token %}
+                                            <input type="number" name="NumAvocat" value="{{Avocats.id}}" hidden>
+											<input type="number" name="idDossier" value="{{idDossier}}" hidden>
+                                            <button type="submit" class="btn btn-success">Affecter</button>
+                                        </form>
+												
 									</td>
 								</tr>
                                 {%endfor%}

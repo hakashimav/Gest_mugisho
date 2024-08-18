@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 class Dossier(models.Model):
-    NumDoss=models.IntegerField(auto_created=True,null=True)
     ElemDoss=models.CharField(max_length=150,null=True,blank=True)
     AttentDoss=models.CharField(max_length=150,null=True,blank=True)
     AvisDoss=models.CharField(max_length=150,null=True,blank=True)
