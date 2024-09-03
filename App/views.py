@@ -183,8 +183,8 @@ def rdv(request):
 
 def Repertoire(request):
     try:
-
-        context = {}
+        repertoire = dao_get.repertoire()
+        context = {'repertoire':repertoire}
         template = loader.get_template('repetoire.html')
         return HttpResponse(template.render(context, request))
     

@@ -4,7 +4,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>YMA</title>
+	<title>Répertoire des rendez-vous</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -159,29 +159,31 @@
 				<!-- Export Datatable start -->
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Base de données Client</h4>
+						<h4 class="text-blue h4">Répertoire des rendez-vous</h4>
 					</div>
 					<div class="pb-20">
 						<table class="table hover multiple-select-row data-table-export nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Noms</th>
-									<th>Genre</th>
-									<th>Etat-Civil</th>
-									<th>Téléphone</th>
-									<th>Adresse mail</th>
-									<th>Date création</th>
+									<th class="table-plus datatable-nosort">Matricule avocat</th>
+									<th>Avocat</th>
+									<th>Observation</th>
+									<th>N° rdv</th>
+									<th>Motif rdv</th>
+									<th>Heure rdv</th>
+									<th>Client</th>
 								</tr>
 							</thead>
 							<tbody>
-								{%for Clients in Client%}
+								{%for repertoires in repertoire%}
 								<tr>
-									<td class="table-plus">{{Clients.PrenonCient}} {{Clients.NomClient}}</td>
-									<td>{{Clients.etaClient}}</td>
-									<td>{{Clients.EtatciviCleint}}</td>
-									<td>{{Clients.NumClien}} </td>
-									<td>{{Clients.FaxClient}}</td>
-									<td>{{Clients.Date_create.date}}</td>
+									<td>{{repertoires.Avocat.id}}</td>
+									<td class="table-plus">{{repertoires.MatriAvoc.PrenAct}} {{repertoires.MatriAvoc.NomAct}}</td>
+									<td>{{repertoires.ObserRendez}}</td>
+									<td>{{repertoires.id}}</td>
+									<td>{{repertoires.MotifRendez}} </td>
+									<td>{{repertoires.HeureRendez}}</td>
+									<td>{{repertoires.NumClient.PrenonCient}} {{repertoires.NumClient.NomClient}}</td>
 								</tr>
 								{%endfor%}
 							</tbody>
