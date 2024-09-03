@@ -193,8 +193,8 @@ def Repertoire(request):
 
 def ListeDossierClient(request):
     try:
-
-        context = {}
+        dossier = dao_get.getDossier()
+        context = {'dossier':dossier}
         template = loader.get_template('listedossiercleint.html')
         return HttpResponse(template.render(context, request))
     
