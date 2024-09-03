@@ -29,5 +29,9 @@ urlpatterns = [
     re_path(r'^data-avocat/(?P<id>\w+)/$',views.dataAvocat,name="dataAvocat"),
     re_path(r'^affecter-dossier/(?P<id>\w+)/$',views.sendDate,name="sendDate"),
     # re_path(r'^affecter-dossier/(?P<id>\w+)/$', views.sendDate,name="sendDate"),
-
+    path('répetoire des rendez-vous/', views.Repertoire,name="repertoire"),
+    path('liste des dossiers par client/',views.ListeDossierClient,name="listedossierclient"),
+    path('liste des paiements effectués par client/',views.ListePaiementClient,name="listepaiementclient"),
+    path('liste des dossiers reçu par période/',views.ListeDossierPeriode,name="listedossierperiode"),
+    path('effectif des clients consultés par date/',views.ClientsConsulte,name="clientsconsulte")
 ]

@@ -177,3 +177,57 @@ def rdv(request):
 
     except Exception as e:
         return e
+    
+
+# the views for out etat
+
+def Repertoire(request):
+    try:
+
+        context = {}
+        template = loader.get_template('repetoire.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
+
+def ListeDossierClient(request):
+    try:
+
+        context = {}
+        template = loader.get_template('listedossiercleint.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
+
+
+def ListePaiementClient(request):
+    try:
+
+        context = {}
+        template = loader.get_template('listepaiementclient.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
+    
+def ListeDossierPeriode(request):
+    try:
+
+        context = {}
+        template = loader.get_template('listedossierperiode.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
+    
+def ClientsConsulte(request):
+    try:
+
+        context = {}
+        template = loader.get_template('clientconsulte.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
