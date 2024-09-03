@@ -25,6 +25,7 @@ urlpatterns = [
     path('forms-send/',views.formsSave,name="formsSave"),
     path('Mes-dossier/',views.mesdossier,name="mesdossier"),
     path('datatable-dossier/',views.datadossier,name="datadossier"),
+    path('fixer-rende-vous/',views.rdv,name="rdv"),
     re_path(r'^data-avocat/(?P<id>\w+)/$',views.dataAvocat,name="dataAvocat"),
     re_path(r'^affecter-dossier/(?P<id>\w+)/$',views.sendDate,name="sendDate"),
     # re_path(r'^affecter-dossier/(?P<id>\w+)/$', views.sendDate,name="sendDate"),

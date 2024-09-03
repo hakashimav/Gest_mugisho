@@ -28,3 +28,13 @@ class dao_Add(object):
             return ClientModels
         except Exception as e:
             return e
+        
+
+    @staticmethod
+    def addRdv(Motif,observe,heur,NumCl):
+        try:
+            rdv = Rendez_vous(MotifRendez=Motif,ObserRendez=observe,HeureRendez=heur,NumClient_id=NumCl)
+            rdv.save()
+            return rdv
+        except Exception as e:
+            return e

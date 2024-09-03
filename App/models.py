@@ -45,7 +45,6 @@ class Nationalite(models.Model):
 
 
 class Rendez_vous(models.Model):
-    NumRendez=models.IntegerField(auto_created=True)
     MotifRendez=models.CharField(max_length=150,null=True,blank=True)
     HeureRendez=models.TimeField()
     ObserRendez=models.CharField(max_length=150,null=True,blank=True)

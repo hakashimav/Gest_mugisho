@@ -158,3 +158,22 @@ def formsSave(request):
     
     except Exception as e:
         return e
+    
+def rdv(request):
+    try:
+        if request.method == "POST":
+            MotifRendez = request.POST.get('MotifRendez', None)
+            ObserRendez = request.POST.get('ObserRendez', None)
+            HeureRendez = request.POST.get('HeureRendez', None)
+            Numclient = request.POST.get('Numclient', None)
+
+            dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,Numclient)
+
+            getDossier = dao_get.getDossier()
+            context = {"Dossier":getDossier,'a':Numclient}
+            template = loader.get_template('mesdossier.html')
+            return HttpResponse(template.render(context, request))
+
+
+    except Exception as e:
+        return e
