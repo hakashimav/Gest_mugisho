@@ -48,4 +48,9 @@ class dao_get(object):
         except:
             return None
         
-  
+    @staticmethod
+    def paiement():
+        try:
+            return Paiement.objects.all().order_by('-id')
+        except:
+            return None

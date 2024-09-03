@@ -4,7 +4,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>YMA</title>
+	<title>Liste des paiements effectués par client</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -159,29 +159,29 @@
 				<!-- Export Datatable start -->
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<h4 class="text-blue h4">Base de données Client</h4>
+						<h4 class="text-blue h4">Liste des paiements effectués par client</h4>
 					</div>
 					<div class="pb-20">
 						<table class="table hover multiple-select-row data-table-export nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Noms</th>
-									<th>Genre</th>
-									<th>Etat-Civil</th>
-									<th>Téléphone</th>
-									<th>Adresse mail</th>
-									<th>Date création</th>
+									<th class="table-plus datatable-nosort">N° Client</th>
+									<th>Noms Client</th>
+									<th>N° paiement</th>
+									<th>Montant</th>
+									<th>Motif paiement</th>
+									<th>Date paiement</th>
 								</tr>
 							</thead>
 							<tbody>
-								{%for Clients in Client%}
+								{%for paiements in paiement%}
 								<tr>
-									<td class="table-plus">{{Clients.PrenonCient}} {{Clients.NomClient}}</td>
-									<td>{{Clients.etaClient}}</td>
-									<td>{{Clients.EtatciviCleint}}</td>
-									<td>{{Clients.NumClien}} </td>
-									<td>{{Clients.FaxClient}}</td>
-									<td>{{Clients.Date_create.date}}</td>
+									<td class="table-plus">{{paiements.NumCleint.id}}</td>
+									<td>{{paiements.NumCleint.PrenonCient}} {{paiements.NumCleint.NomClient}}</td>
+									<td>{{paiements.id}}</td>
+									<td>{{paiements.MontPaiem}} </td>
+									<td>{{paiements.MotifPaiem}}</td>
+									<td>{{paiements.Date_create.date}}</td>
 								</tr>
 								{%endfor%}
 							</tbody>

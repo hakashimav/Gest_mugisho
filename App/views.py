@@ -204,8 +204,8 @@ def ListeDossierClient(request):
 
 def ListePaiementClient(request):
     try:
-
-        context = {}
+        paiement = dao_get.paiement()
+        context = {'paiement':paiement}
         template = loader.get_template('listepaiementclient.html')
         return HttpResponse(template.render(context, request))
     

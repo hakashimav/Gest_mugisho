@@ -35,6 +35,7 @@ class Paiement(models.Model):
     MontPaiem=models.IntegerField()
     MotifPaiem=models.CharField(max_length=150,null=True,blank=True)
     NumCleint=models.ForeignKey('Client', related_name='PaiemCleint', null=True, blank=True, on_delete=models.CASCADE)
+    Date_create=models.DateTimeField(auto_now_add=True)
 
 
 
