@@ -215,7 +215,8 @@ def ListePaiementClient(request):
 def ListeDossierPeriode(request):
     try:
 
-        context = {}
+        dossier = dao_get.getDossier()
+        context = {'dossier':dossier}
         template = loader.get_template('listedossierperiode.html')
         return HttpResponse(template.render(context, request))
     
