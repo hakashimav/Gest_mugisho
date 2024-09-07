@@ -25,7 +25,7 @@ urlpatterns = [
     path('forms-send/',views.formsSave,name="formsSave"),
     path('Mes-dossier/',views.mesdossier,name="mesdossier"),
     path('datatable-dossier/',views.datadossier,name="datadossier"),
-    re_path(r'^fixer-rende-vous/(?P<id>\w+)/$',views.rdv,name="rdv"),
+    re_path(r'^dossiers/(?P<id>\w+)/$',views.rdv,name="rdv"),
     re_path(r'^data-avocat/(?P<id>\w+)/$',views.dataAvocat,name="dataAvocat"),
     re_path(r'^affecter-dossier/(?P<id>\w+)/$',views.sendDate,name="sendDate"),
     # re_path(r'^affecter-dossier/(?P<id>\w+)/$', views.sendDate,name="sendDate"),
@@ -34,5 +34,6 @@ urlpatterns = [
     path('liste des paiements effectués par client/',views.ListePaiementClient,name="listepaiementclient"),
     path('liste des dossiers reçu par période/',views.ListeDossierPeriode,name="listedossierperiode"),
     path('effectif des clients consultés par date/',views.ClientsConsulte,name="clientsconsulte"),
-    path('update-dossier/',views.updateDossier,name="updateDossier")
+    path('update-dossier/',views.updateDossier,name="updateDossier"),
+    path('fixer-rendez-vous/',views.fixerRdv,name="fixerRdv")
 ]

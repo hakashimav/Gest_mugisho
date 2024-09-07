@@ -203,6 +203,34 @@ def updateDossier(request):
         return e
     
 
+def fixerRdv(request):
+    try:
+        if request.method == "POST":
+            MotifRendez = request.POST.get('MotifRendez', None)
+            ObserRendez = request.POST.get('ObserRendez', None)
+            HeureRendez = request.POST.get('HeureRendez', None)
+            avocat = request.POST.get('avocat', None)
+            client = request.POST.get('client', None)
+            IdDossier = request.POST.get('IdDossier', None)
+            
+            data = dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,client,avocat)
+
+            if data:
+                getDossier = dao_get.getDossierById(IdDossier)
+                avocat = getDossier.NumAvocat.id
+                client = getDossier.Numclient.id
+                element = getDossier.ElemDoss
+                attente = getDossier.AttentDoss
+                avis = getDossier.AvisDoss
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier}
+                template = loader.get_template('dossier.html')
+                return HttpResponse(template.render(context, request))
+            
+
+    except Exception as e:
+        return e
+    
+
 # the views for out etat
 
 def Repertoire(request):
