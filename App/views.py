@@ -170,8 +170,13 @@ def rdv(request,id):
             # print(Numclient)
             # print('######')
             # dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,Numclient)
-
-        context = {}
+        getDossier = dao_get.getDossierById(id)
+        avocat = getDossier.NumAvocat.id
+        client = getDossier.Numclient.id
+        element = getDossier.ElemDoss
+        attente = getDossier.AttentDoss
+        avis = getDossier.AvisDoss
+        context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':id}
         template = loader.get_template('dossier.html')
         return HttpResponse(template.render(context, request))
 

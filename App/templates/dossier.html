@@ -169,15 +169,18 @@
 															<h4 class="text-blue h5 mb-20">Modifier les informations sur le dossier</h4>
 															<div class="form-group">
 																<label>Elément Dossier</label>
-																<input class="form-control form-control-lg" type="text" name="ElemDoss">
+																<input class="form-control form-control-lg" type="text" value="{{element}}" name="ElemDoss">
 															</div>
 															<div class="form-group">
 																<label>Attente Dossier</label>
-																<input class="form-control form-control-lg" type="text" name="AttentDoss">
+																<input class="form-control form-control-lg" type="text" value="{{attente}}"  name="AttentDoss">
 															</div>
 															<div class="form-group">
 																<label>Avis Dossier</label>
-																<input class="form-control form-control-lg" type="text" name="AvisDoss">
+																<input class="form-control form-control-lg" type="text" value="{{avis}}"  name="AvisDoss">
+															</div>
+                                                            <div class="form-group">
+																<input class="form-control form-control-lg" type="text" name="IdDossier" value="{{idDossier}}" hidden>
 															</div>
 												
 															<div class="form-group mb-0">
@@ -207,6 +210,12 @@
 															<div class="form-group">
 																<label>Heure rendez-vous</label>
 																<input class="form-control form-control-lg" type="time" name="HeureRendez">
+															</div>
+                                                            <div class="form-group">
+																<input class="form-control form-control-lg" type="text" name="avocat" value="{{avocat}}" hidden>
+															</div>
+                                                            <div class="form-group">
+																<input class="form-control form-control-lg" type="text" name="client" value="{{client}}" hidden>
 															</div>
 														
 															<div class="form-group mb-0">

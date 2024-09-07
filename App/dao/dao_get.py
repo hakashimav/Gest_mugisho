@@ -54,3 +54,10 @@ class dao_get(object):
             return Paiement.objects.all().order_by('-id')
         except:
             return None
+        
+    @staticmethod
+    def getDossierById(id):
+        try:
+            return Dossier.objects.get(id=id)
+        except:
+            return None
