@@ -163,7 +163,8 @@
 										<!-- Timeline Tab start -->
 										<div class="tab-pane fade show active" id="timeline" role="tabpanel">
 											<div class="profile-setting">
-												<form>
+												<form action="{%url 'updateDossier'%}" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
 													<ul class="profile-edit-list row">
 														<li class="weight-500 col-md-6">
 															<h4 class="text-blue h5 mb-20">Modifier les informations sur le dossier</h4>
@@ -180,7 +181,7 @@
 																<input class="form-control form-control-lg" type="text" value="{{avis}}"  name="AvisDoss">
 															</div>
                                                             <div class="form-group">
-																<input class="form-control form-control-lg" type="text" name="IdDossier" value="{{idDossier}}" hidden>
+																<input class="form-control form-control-lg" type="number" name="IdDossier" value="{{idDossier}}" hidden>
 															</div>
 												
 															<div class="form-group mb-0">

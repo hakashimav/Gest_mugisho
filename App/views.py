@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from App.dao.dao_add import dao_Add
 from App.dao.dao_get import dao_get
+from datetime import datetime, date, timedelta, time
+from django.utils import timezone
 
 # Create your views here.
 
@@ -161,15 +163,7 @@ def formsSave(request):
     
 def rdv(request,id):
     try:
-        # if request.method == "POST":
-            # MotifRendez = request.POST.get('motif', None)
-            # ObserRendez = request.POST.get('ObserRendez', None)
-            # HeureRendez = request.POST.get('HeureRendez', None)
-            # Numclient = request.POST.get('Numclient')
-            # print('######')
-            # print(Numclient)
-            # print('######')
-            # dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,Numclient)
+        
         getDossier = dao_get.getDossierById(id)
         avocat = getDossier.NumAvocat.id
         client = getDossier.Numclient.id
@@ -180,6 +174,30 @@ def rdv(request,id):
         template = loader.get_template('dossier.html')
         return HttpResponse(template.render(context, request))
 
+    except Exception as e:
+        return e
+    
+def updateDossier(request):
+    try:
+        if request.method == "POST":
+            ElemDoss = request.POST.get('ElemDoss', None)
+            AttentDoss = request.POST.get('AttentDoss', None)
+            AvisDoss = request.POST.get('AvisDoss', None)
+            IdDossier = request.POST.get('IdDossier', None)
+            now = timezone.now()
+            
+            data = dao_get.updateDossier(IdDossier,ElemDoss,AttentDoss,AvisDoss,now)
+
+            if data:
+                getDossier = dao_get.getDossierById(IdDossier)
+                avocat = getDossier.NumAvocat.id
+                client = getDossier.Numclient.id
+                element = getDossier.ElemDoss
+                attente = getDossier.AttentDoss
+                avis = getDossier.AvisDoss
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier}
+                template = loader.get_template('dossier.html')
+                return HttpResponse(template.render(context, request))
 
     except Exception as e:
         return e

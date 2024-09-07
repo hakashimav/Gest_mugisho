@@ -61,3 +61,17 @@ class dao_get(object):
             return Dossier.objects.get(id=id)
         except:
             return None
+        
+    @staticmethod
+    def updateDossier(idDossier,element,attent,avis,now):
+        try:
+            dos = Dossier.objects.get(id=idDossier)
+            dos.ElemDoss = element
+            dos.AttentDoss = attent
+            dos.AvisDoss = avis
+            dos.Date_modification = now
+            dos.save()
+            return dos
+
+        except:
+            return None
