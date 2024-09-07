@@ -148,6 +148,22 @@
 				<div class="row">
 
 					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+                        {%if succes1%}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{succes1}}</strong> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {%endif%}
+                        {%if succes2%}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{succes2}}</strong> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {%endif%}
 						<div class="card-box height-100-p overflow-hidden">
 							<div class="profile-tab height-100-p">
 								<div class="tab height-100-p">

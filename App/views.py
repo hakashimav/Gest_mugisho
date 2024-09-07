@@ -195,7 +195,8 @@ def updateDossier(request):
                 element = getDossier.ElemDoss
                 attente = getDossier.AttentDoss
                 avis = getDossier.AvisDoss
-                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier}
+                succes1 = "Modification des informations sur le dossier!"
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes1':succes1}
                 template = loader.get_template('dossier.html')
                 return HttpResponse(template.render(context, request))
 
@@ -222,7 +223,8 @@ def fixerRdv(request):
                 element = getDossier.ElemDoss
                 attente = getDossier.AttentDoss
                 avis = getDossier.AvisDoss
-                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier}
+                succes2 = "Vous venez de fixé un rendez-vous sur ce dossier!"
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes2':succes2}
                 template = loader.get_template('dossier.html')
                 return HttpResponse(template.render(context, request))
             
