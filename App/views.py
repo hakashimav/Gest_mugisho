@@ -162,12 +162,14 @@ def formsSave(request):
 def rdv(request):
     try:
         if request.method == "POST":
-            MotifRendez = request.POST.get('MotifRendez', None)
-            ObserRendez = request.POST.get('ObserRendez', None)
-            HeureRendez = request.POST.get('HeureRendez', None)
-            Numclient = request.POST.get('Numclient', None)
-
-            dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,Numclient)
+            # MotifRendez = request.POST.get('motif', None)
+            # ObserRendez = request.POST.get('ObserRendez', None)
+            # HeureRendez = request.POST.get('HeureRendez', None)
+            Numclient = request.POST.get('Numclient')
+            print('######')
+            print(Numclient)
+            print('######')
+            # dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,Numclient)
 
             getDossier = dao_get.getDossier()
             context = {"Dossier":getDossier,'a':Numclient}
