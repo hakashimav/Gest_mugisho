@@ -286,3 +286,30 @@ def ClientsConsulte(request):
     
     except Exception as e:
         return e
+    
+
+def login(request):
+    try:
+        context = {}
+        template = loader.get_template('login.html')
+        return HttpResponse(template.render(context, request))
+    
+    except Exception as e:
+        return e
+
+def sign_in(request):
+    try:
+        if request.method == "POST":
+            username = request.POST.get('username', None)
+            password = request.POST.get('password', None)
+            print('####')
+            print(username)
+            print('#####')
+            print(password)
+            print('####')
+            context = {}
+            template = loader.get_template('login.html')
+            return HttpResponse(template.render(context, request))
+
+    except Exception as e:
+        return e

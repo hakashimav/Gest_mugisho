@@ -35,5 +35,7 @@ urlpatterns = [
     path('liste des dossiers reçu par période/',views.ListeDossierPeriode,name="listedossierperiode"),
     path('effectif des clients consultés par date/',views.ClientsConsulte,name="clientsconsulte"),
     path('update-dossier/',views.updateDossier,name="updateDossier"),
-    path('fixer-rendez-vous/',views.fixerRdv,name="fixerRdv")
+    path('fixer-rendez-vous/',views.fixerRdv,name="fixerRdv"),
+    path('login/',views.login,name="login"),
+    path('sig-in/',views.sign_in,name="sign_in")
 ]
