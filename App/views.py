@@ -5,7 +5,8 @@ from App.dao.dao_add import dao_Add
 from App.dao.dao_get import dao_get
 from datetime import datetime, date, timedelta, time
 from django.utils import timezone
-
+from django.contrib.auth import (authenticate,login,logout)
+from django.shortcuts import redirect
 # Create your views here.
 
 def index(request):
@@ -288,7 +289,7 @@ def ClientsConsulte(request):
         return e
     
 
-def login(request):
+def login_view(request):
     try:
         context = {}
         template = loader.get_template('login.html')
@@ -300,16 +301,30 @@ def login(request):
 def sign_in(request):
     try:
         if request.method == "POST":
-            username = request.POST.get('username', None)
-            password = request.POST.get('password', None)
-            print('####')
+            username = request.POST["username"]
+            password = request.POST["password"]
+            print("#####")
             print(username)
-            print('#####')
             print(password)
-            print('####')
-            context = {}
-            template = loader.get_template('login.html')
-            return HttpResponse(template.render(context, request))
+            print("#####")
+
+            user = authenticate(username=username, password=password)
+            # if user is not None:
+
+            login(request,user)
+            if user.is_authenticated:
+                #-----------------  user ----------------------
+                getuser_id=user.id                    #
+                username= dao_get.getUtilisateur(getuser_id) #
+                #----------------- / user ---------------------            
+            else:
+                raise Exception
+
+            return redirect('Dashboard')
 
     except Exception as e:
-        return e
+        context = {
+            'error':"Identifiants incorrects "+str(e),
+        }
+        template = loader.get_template('login.html')
+        return HttpResponse(template.render(context, request))

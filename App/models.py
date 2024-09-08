@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User, Group
 
 # Create your models here.
 
@@ -101,3 +102,14 @@ class Avocat(models.Model):
 class Categorie_client(models.Model):
     CodeCategcl=models.IntegerField(auto_created=True)
     LibCategcl=models.CharField(max_length=150,null=True,blank=True)
+
+class Model_Utilisateur(models.Model):
+    utilisateur=models.ForeignKey(User,related_name="utilisateur_user" ,blank=True, null=True, on_delete=models.CASCADE)
+    nom=models.CharField(max_length = 50, null = True, blank = True)    
+    postnom=models.CharField(max_length = 50, null = True, blank = True) 
+    prenom=models.CharField(max_length = 50, null = True, blank = True) 
+    sexe=models.CharField(max_length = 10, null = True, blank = True)
+    telephone=models.CharField(max_length = 50, null = True, blank = True)
+    date_naissance=models.DateField(null = True, blank = True)
+    created=models.DateTimeField(auto_now_add=True)
+    adress=models.CharField(max_length = 150, null = True, blank = True)

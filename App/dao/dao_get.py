@@ -75,3 +75,13 @@ class dao_get(object):
 
         except:
             return None
+        
+    @staticmethod
+    def getUtilisateur(id):
+        try:
+            getuser_id=User.objects.get(id=id)
+            utilisateur = Model_Utilisateur.objects.filter(utilisateur=getuser_id.id)
+            for user in utilisateur:
+                return user
+        except Exception as e:
+            print("IL Y A PAS D'UTILISATEUR AVEC CETTE IDENTIFIANT  Backend((getUtilisateur)) err=",e)
