@@ -77,6 +77,13 @@ class dao_get(object):
             return None
         
     @staticmethod
+    def FilterDossierById(id):
+        try:
+            return Dossier.objects.filter(id=id)
+        except:
+            return None
+        
+    @staticmethod
     def updateDossier(idDossier,element,attent,avis,now):
         try:
             dos = Dossier.objects.get(id=idDossier)

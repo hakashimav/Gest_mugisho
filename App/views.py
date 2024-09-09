@@ -178,7 +178,8 @@ def rdv(request,id):
         element = getDossier.ElemDoss
         attente = getDossier.AttentDoss
         avis = getDossier.AvisDoss
-        context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':id}
+        filterDossier = dao_get.FilterDossierById(id)
+        context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':id,'DossierAvocat':filterDossier}
         template = loader.get_template('dossier.html')
         return HttpResponse(template.render(context, request))
 
