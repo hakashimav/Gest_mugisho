@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, JsonResponse
+from django.urls import reverse_lazy, reverse
 from django.template import loader
 from App.dao.dao_add import dao_Add
 from App.dao.dao_get import dao_get
@@ -10,7 +12,12 @@ from django.shortcuts import redirect
 # Create your views here.
 
 def index(request):
-    context = {}
+    getuser = request.user.id
+    idAvoct = dao_get.getAvocatByUser(getuser)
+    getAvocat = dao_get.getAvocat()
+    getDossier = dao_get.getDossier()
+    getDosByAvoc = dao_get.getDossierByAvocat(idAvoct.id)
+    context = {"Dossier":getDossier,"Avocat":getAvocat,'DossierAvocat':getDosByAvoc}
     template = loader.get_template('index2.html')
     return HttpResponse(template.render(context, request))
 
@@ -303,10 +310,6 @@ def sign_in(request):
         if request.method == "POST":
             username = request.POST["username"]
             password = request.POST["password"]
-            print("#####")
-            print(username)
-            print(password)
-            print("#####")
 
             user = authenticate(username=username, password=password)
             # if user is not None:
@@ -328,3 +331,8 @@ def sign_in(request):
         }
         template = loader.get_template('login.html')
         return HttpResponse(template.render(context, request))
+    
+def log_out(request):
+    logout(request)
+
+    return HttpResponseRedirect(reverse('login'))

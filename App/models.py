@@ -12,6 +12,7 @@ class Dossier(models.Model):
     Numclient=models.ForeignKey('Client', related_name='DosCleint', null=True, blank=True, on_delete=models.CASCADE)
     NumAvocat=models.ForeignKey('Avocat', related_name='AvocDos', null=True, blank=True, on_delete=models.CASCADE)
     is_ready=models.BooleanField(default=False)
+    consulter = models.BooleanField(default=False)
 
 
 class Client(models.Model):
@@ -69,6 +70,8 @@ class Acteur(models.Model):
     PrenAct=models.CharField(max_length=150,null=True,blank=True)
     TelAct=models.CharField(max_length=150,null=True,blank=True)
     EmailAct=models.CharField(max_length=150,null=True,blank=True)
+    utilisateur=models.ForeignKey(User,related_name="utilisateur_acteur" ,blank=True, null=True, on_delete=models.CASCADE)
+
 
 
 
@@ -96,6 +99,8 @@ class Avocat(models.Model):
     PrenAct=models.CharField(max_length=150,null=True,blank=True)
     TelAct=models.CharField(max_length=150,null=True,blank=True)
     EmailAct=models.CharField(max_length=150,null=True,blank=True)
+    utilisateur=models.ForeignKey(User,related_name="utilisateur_avocat" ,blank=True, null=True, on_delete=models.CASCADE)
+
 
 
 

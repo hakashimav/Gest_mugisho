@@ -37,5 +37,6 @@ urlpatterns = [
     path('update-dossier/',views.updateDossier,name="updateDossier"),
     path('fixer-rendez-vous/',views.fixerRdv,name="fixerRdv"),
     path('login/',views.login_view,name="login"),
-    path('sing-in/',views.sign_in,name="sign_in")
+    path('sing-in/',views.sign_in,name="sign_in"),
+    path('log-out/',views.log_out,name="log_out")
 ]

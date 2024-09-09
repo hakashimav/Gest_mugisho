@@ -172,9 +172,9 @@
 					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue">Johnny Brown! {{user.username}}</div>
+							Welcome back<div class="weight-600 font-30 text-blue">{{user.username}}!</div>
 						</h4>
-						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
+						<h1 class="font-18 max-width-600">Gest Mugisho</h1>
 					</div>
 				</div>
 			</div>
@@ -229,20 +229,107 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-8 mb-30">
-					<div class="card-box height-100-p pd-20">
-						<h2 class="h4 mb-20">Activity</h2>
-						<div id="chart5"></div>
+		</div>
+		{% if user.groups.all.0.name == 'Superviseur' %}
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<!-- Simple Datatable start -->
+				<div class="card-box mb-30">
+					<div class="pd-20">
+						<h4 class="text-blue h4">Data Table Simple</h4>
+					</div>
+					<div class="pb-20">
+						<table class="data-table table stripe hover nowrap">
+							<thead>
+								<tr>
+									<th class="table-plus datatable-nosort">N°</th>
+									<th>Noms</th>
+									<th>Elément du dossier</th>
+									<th>Niveau du dossier</th>
+									<th>Création</th>
+									<th>Statut</th>
+									<th class="datatable-nosort">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{%for Dossiers in Dossier%}
+								<tr>
+									<td>{{Dossiers.id}}</td>
+									<td class="table-plus">{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</td>
+									<td>{{Dossiers.ElemDoss}}</td>
+									<td>{{Dossiers.AttentDoss}}</td>
+									<td>{{Dossiers.Date_create.date}}</td>
+									{%if Dossiers.is_ready == True%}
+									<td><span class="badge badge-success">Affecté</span></td>
+									{%else%}
+									<td><span class="badge badge-secondary">Non affecter</span></td>
+									{%endif%}
+									<td>
+										<div class="dropdown">
+											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+												<i class="dw dw-more"></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+												<a class="dropdown-item"  href="{%url 'dataAvocat' Dossiers.id %}"><i class="dw dw-edit2"></i> Affecter</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+											</div>
+										</div>
+									</td>
+								</tr>
+								{%endfor%}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- Simple Datatable End -->								
+			</div>			
+		</div>
+		{%else%}
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="container pd-0">
+					<div class="contact-directory-list">
+						<ul class="row">
+							{%for Dossiers in DossierAvocat%}
+							<li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+								<div class="contact-directory-box">
+									<div class="contact-dire-info text-center">
+										
+										<span class="micon dw dw-folder"></span> N° Dossier : {{Dossiers.id}}
+										
+										<div class="contact-name">
+											<h4>{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</h4>
+											<p>{{Dossiers.Date_create.date}}</p>
+										</div>
+										<div class="contact-skill">
+											<div class="work text-success"><i class="icon-copy fa fa-newspaper-o" aria-hidden="true"></i> Element du dossier</div>
+											<p>{{Dossiers.ElemDoss}}</p>
+										</div>
+										<div class="contact-skill">
+											<div class="work text-success"><i class="icon-copy fa fa-hourglass-half" aria-hidden="true"></i> Niveau du dossier</div>
+											<p>{{Dossiers.AttentDoss}}</p>
+										</div>
+										<div class="profile-sort-desc">
+										</div>
+									</div>
+									<div class="view-contact">
+										<a href="{%url 'rdv' Dossiers.id %}">Consulter</a>
+									</div>
+								</div>
+							</li>
+							{%endfor%}
+						</ul>
 					</div>
 				</div>
 			</div>
-			
-			<div class="footer-wrap pd-20 mb-20 card-box">
-				&copy2024 tous droits réserver YMA - Dashboard
-			</div>
 		</div>
+		{%endif%}
+		
+		<div class="footer-wrap pd-20 mb-20 card-box">
+			&copy2024 tous droits réserver YMA - Dashboard
+		</div>
+		
 	</div>
 	<!-- js -->
 	<script src="{%static 'vendors/scripts/core.js'%}"></script>

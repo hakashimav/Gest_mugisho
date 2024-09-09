@@ -22,11 +22,25 @@ class dao_get(object):
         except:
             return None
         
+    @staticmethod
+    def getDossierByAvocat(id):
+        try:
+            return Dossier.objects.filter(NumAvocat_id=id).order_by('-id')
+        except:
+            return None
+        
             
     @staticmethod
     def getAvocat():
         try:
             return Avocat.objects.all().order_by('-id')
+        except:
+            return None
+        
+    @staticmethod
+    def getAvocatByUser(id):
+        try:
+            return Avocat.objects.get(utilisateur_id=id)
         except:
             return None
         

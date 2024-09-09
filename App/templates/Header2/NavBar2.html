@@ -18,11 +18,13 @@
                         <span class="micon dw dw-house-1"></span><span class="">Home</span>
                     </a>
                 </li>
+                {% if user.groups.all.0.name == 'Superviseur' %}
                 <li class="dropdown">
                     <a href="{%url 'forms'%}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-edit2"></span><span class="mtext">Forms</span>
                     </a>
                 </li>
+                {%endif%}
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon dw dw-library"></span><span class="mtext">Etat en sortie</span>
@@ -37,16 +39,20 @@
 
                     </ul>
                 </li>
+                {% if user.groups.all.0.name == 'Avocat' %}
                 <li>
                     <a href="{%url 'mesdossier'%}" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-folder"></span><span class="mtext">Mes Dossiers</span>
+                        <span class="micon dw dw-folder"></span><span class="mtext">Dossier</span>
                     </a>
                 </li>
+                {%else%}
                 <li>
                     <a href="{%url 'datadossier'%}" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-library"></span><span class="mtext">Les Dossiers</span>
+                        <span class="micon dw dw-folder"></span><span class="mtext">Dossier</span>
                     </a>
                 </li>
+                {%endif%}
+             
                 <!-- <li>
                     <a href="calendar.html" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user1"></span><span class="mtext">Profile</span>
