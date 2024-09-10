@@ -177,6 +177,9 @@
 										<li class="nav-item">
 											<a class="nav-link" data-toggle="tab" href="#data" role="tab">Evolution Dossier</a>
 										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#paie" role="tab">Enregistré paiement</a>
+										</li>
 									</ul>
 									<div class="tab-content">
 										<!-- Timeline Tab start -->
@@ -299,6 +302,35 @@
 											</div>
 										</div>
 										<!-- Setting Tab End -->
+										<!-- Timeline Tab start -->
+										<div class="tab-pane fade height-100-p" id="paie" role="tabpanel">
+											<div class="profile-setting">
+												<form action="{%url 'savepaie'%}" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+													<ul class="profile-edit-list row">
+														<li class="weight-500 col-md-6">
+															<h4 class="text-blue h5 mb-20">Enregistré le paiement</h4>
+															<div class="form-group">
+																<label>Montage Paiement</label>
+																<input class="form-control form-control-lg" type="number" name="MontPaiem">
+															</div>
+															<div class="form-group">
+																<label>Motif paiement</label>
+																<input class="form-control form-control-lg" type="text"  name="MotifPaiem">
+															</div>
+                                                            <div class="form-group">
+																<input class="form-control form-control-lg" type="number" name="IdDossier" value="{{idDossier}}" hidden>
+															</div>
+												
+															<div class="form-group mb-12">
+																<input type="submit" class="btn btn-primary" value="Valider">
+															</div>
+														</li>
+													</ul>
+												</form>
+											</div>
+										</div>
+										<!-- Timeline Tab End -->
 									</div>
 								</div>
 							</div>

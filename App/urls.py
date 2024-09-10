@@ -41,4 +41,5 @@ urlpatterns = [
     path('log-out/',views.log_out,name="log_out"),
     re_path(r'^traiter-dossier/(?P<id>\w+)/$',views.traiteDossier,name="traiteDossier"),
     re_path(r'^annuler-dossier/(?P<id>\w+)/$',views.annulerDossier,name="annulerDossier"),
+    path('enregistrement-paiement/',views.savepaie,name="savepaie")
 ]

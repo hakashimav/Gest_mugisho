@@ -198,12 +198,7 @@ def formSend(request):
             ElemDoss = request.POST.get('ElemDoss', None)
             AttentDoss = request.POST.get('AttentDoss', None)
             AvisDoss = request.POST.get('AvisDoss', None)
-
-            # data for paiement
-            MontPaiem = request.POST.get('MontPaiem', None)
-            MotifPaiem = request.POST.get('MotifPaiem', None)
             
-
             # save the data send for client
             data = dao_Add.addClients(prenom,nom,postnom,LieunClient,genre,EtatciviCleint,telclient,numrccm,QualClient,mail)
             if data:
@@ -212,9 +207,6 @@ def formSend(request):
 
             # # save the data send for dossier
             dao_Add.addDossier(ElemDoss,AttentDoss,AvisDoss,get_idClient.id)
-
-            # # save the data send for paiement
-            dao_Add.addPaiement(MontPaiem,MotifPaiem,get_idClient.id)
 
         getClient = dao_get.getClient()
 
@@ -243,15 +235,8 @@ def formsSave(request):
             AttentDoss = request.POST.get('AttentDoss', None)
             AvisDoss = request.POST.get('AvisDoss', None)
 
-            # data for paiement
-            MontPaiem = request.POST.get('MontPaiem', None)
-            MotifPaiem = request.POST.get('MotifPaiem', None)
-            
             # # save the data send for dossier
             dao_Add.addDossier(ElemDoss,AttentDoss,AvisDoss,ClientId)
-
-            # # save the data send for paiement
-            dao_Add.addPaiement(MontPaiem,MotifPaiem,ClientId)
 
         getClient = dao_get.getClient()
 
@@ -262,6 +247,18 @@ def formsSave(request):
     except Exception as e:
         return e
     
+def savepaie(request):
+    try:
+        if request.method == "POST":
+            MontPaiem = request.POST.get('MontPaiem', None)
+            MotifPaiem = request.POST.get('MotifPaiem', None)
+            IdDossier = request.POST.get('IdDossier', None)
+            dao_Add.savepaei(MontPaiem,MotifPaiem,IdDossier)
+
+        return redirect('rdv',IdDossier)
+
+    except Exception as e:
+        return e
 
 @login_required(login_url='login')
 def rdv(request,id):
@@ -514,6 +511,7 @@ def log_out(request):
     return HttpResponseRedirect(reverse('login'))
 
 
+@login_required(login_url='login')
 def traiteDossier(request,id):
     try:
         dao_get.traiterDossier(id)
@@ -522,7 +520,9 @@ def traiteDossier(request,id):
 
     except Exception as e:
         return None
-    
+
+
+@login_required(login_url='login')   
 def annulerDossier(request,id):
     try:
         dao_get.annulerDossier(id)

@@ -38,3 +38,12 @@ class dao_Add(object):
             return rdv
         except Exception as e:
             return e
+        
+    @staticmethod
+    def savepaei(mont,motif,dossier):
+        try:
+            paie = Paiement(MontPaiem=mont,MotifPaiem=motif,dossier_id=dossier)
+            paie.save()
+            return paie
+        except:
+            return None
