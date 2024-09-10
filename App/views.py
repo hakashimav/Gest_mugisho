@@ -6,20 +6,26 @@ from django.template import loader
 from App.dao.dao_add import dao_Add
 from App.dao.dao_get import dao_get
 from datetime import datetime, date, timedelta, time
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib.auth import (authenticate,login,logout)
 from django.shortcuts import redirect
 # Create your views here.
 
+@login_required(login_url='login')
 def index(request):
     try:
         s=""
+        idAv=""
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
+        if idAvoct:
+            idAv = idAvoct.id
+
         getAvocat = dao_get.getAvocat()
         getDossier = dao_get.getDossier()
-        getDosByAvoc = dao_get.getDossierByAvocat(idAvoct.id)
-        alert = dao_get.NewDossier(idAvoct.id)
+        getDosByAvoc = dao_get.getDossierByAvocat(idAv)
+        alert = dao_get.NewDossier(idAv)
         if alert:
             s = "vrai"
         context = {"Dossier":getDossier,"Avocat":getAvocat,'DossierAvocat':getDosByAvoc,'alert':alert,"s":s}
@@ -28,7 +34,7 @@ def index(request):
     except Exception as e:
         return e
 
-
+@login_required(login_url='login')
 def datatable(request):
     try:
         s=""
@@ -47,6 +53,7 @@ def datatable(request):
         return e
 
 
+@login_required(login_url='login')
 def mesdossier(request):
     try:
         s=""
@@ -62,7 +69,9 @@ def mesdossier(request):
     
     except Exception as e:
         return e
-    
+
+
+@login_required(login_url='login')
 def datadossier(request):
     try:
         s=""
@@ -80,6 +89,8 @@ def datadossier(request):
     except Exception as e:
         return e
 
+
+@login_required(login_url='login')
 def sendDate(request,id):
     try:
         s=""
@@ -101,6 +112,7 @@ def sendDate(request,id):
         return e
 
 
+@login_required(login_url='login')
 def dataAvocat(request,id):
     try:
         s=""
@@ -118,7 +130,7 @@ def dataAvocat(request,id):
     except Exception as e:
         return e
 
-
+@login_required(login_url='login')
 def forms(request):
     try:
         s=""
@@ -135,7 +147,8 @@ def forms(request):
     
     except Exception as e:
         return e
-    
+
+@login_required(login_url='login')
 def formSend(request):
     try:
         s=""
@@ -190,6 +203,7 @@ def formSend(request):
         return e
     
 
+@login_required(login_url='login')
 def formsSave(request):
     try:
         s=""
@@ -225,6 +239,8 @@ def formsSave(request):
     except Exception as e:
         return e
     
+
+@login_required(login_url='login')
 def rdv(request,id):
     try:
         s=""
@@ -248,7 +264,9 @@ def rdv(request,id):
 
     except Exception as e:
         return e
-    
+
+
+@login_required(login_url='login')  
 def updateDossier(request):
     try:
         s=""
@@ -282,6 +300,7 @@ def updateDossier(request):
         return e
     
 
+@login_required(login_url='login')
 def fixerRdv(request):
     try:
         s=""
@@ -319,6 +338,7 @@ def fixerRdv(request):
 
 # the views for out etat
 
+@login_required(login_url='login')
 def Repertoire(request):
     try:
         s=""
@@ -335,6 +355,7 @@ def Repertoire(request):
     except Exception as e:
         return e
 
+@login_required(login_url='login')
 def ListeDossierClient(request):
     try:
         s=""
@@ -352,6 +373,7 @@ def ListeDossierClient(request):
         return e
 
 
+@login_required(login_url='login')
 def ListePaiementClient(request):
     try:
         s=""
@@ -367,7 +389,9 @@ def ListePaiementClient(request):
     
     except Exception as e:
         return e
-    
+
+
+@login_required(login_url='login')
 def ListeDossierPeriode(request):
     try:
         s=""
@@ -384,7 +408,9 @@ def ListeDossierPeriode(request):
     
     except Exception as e:
         return e
-    
+
+
+@login_required(login_url='login')
 def ClientsConsulte(request):
     try:
         s=""
@@ -403,13 +429,7 @@ def ClientsConsulte(request):
 
 def login_view(request):
     try:
-        s=""
-        getuser = request.user.id
-        idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
-        context = {'alert':alert,"s":s}
+        context = {}
         template = loader.get_template('login.html')
         return HttpResponse(template.render(context, request))
     
