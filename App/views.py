@@ -17,6 +17,10 @@ def index(request):
     try:
         s=""
         idAv=""
+        nbr4=0
+        nbr=0
+        nbr2=0
+        nbr3=0
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
         if idAvoct:
@@ -25,10 +29,24 @@ def index(request):
         getAvocat = dao_get.getAvocat()
         getDossier = dao_get.getDossier()
         getDosByAvoc = dao_get.getDossierByAvocat(idAv)
+
         alert = dao_get.NewDossier(idAv)
         if alert:
             s = "vrai"
-        context = {"Dossier":getDossier,"Avocat":getAvocat,'DossierAvocat':getDosByAvoc,'alert':alert,"s":s}
+            nbr4 = alert.count()
+
+        if getDosByAvoc:
+            nbr=getDosByAvoc.count()
+
+        getDossierTraiter = dao_get.getDossierTraiter(idAv)
+        if getDossierTraiter:
+            nbr2 = getDossierTraiter.count()
+
+        getDossierAnnuler = dao_get.getDossierAnnuler(idAv)
+        if getDossierAnnuler:
+            nbr3 = getDossierAnnuler.count()
+
+        context = {"Dossier":getDossier,"Avocat":getAvocat,'DossierAvocat':getDosByAvoc,'alert':alert,"s":s,"val4":nbr4,'val':nbr,'val2':nbr2,'val3':nbr3}
         template = loader.get_template('index2.html')
         return HttpResponse(template.render(context, request))
     except Exception as e:
@@ -63,6 +81,7 @@ def mesdossier(request):
         idAvoct = dao_get.getAvocatByUser(getuser)
         if idAvoct:
             idAv = idAvoct.id
+
         if alert:
             s = "vrai"
         getDossier = dao_get.getDossierByAvocat(idAv)
@@ -493,3 +512,22 @@ def log_out(request):
     logout(request)
 
     return HttpResponseRedirect(reverse('login'))
+
+
+def traiteDossier(request,id):
+    try:
+        dao_get.traiterDossier(id)
+
+        return HttpResponseRedirect(reverse('Dashboard'))
+
+    except Exception as e:
+        return None
+    
+def annulerDossier(request,id):
+    try:
+        dao_get.annulerDossier(id)
+
+        return HttpResponseRedirect(reverse('Dashboard'))
+
+    except Exception as e:
+        return None

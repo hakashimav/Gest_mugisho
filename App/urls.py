@@ -38,5 +38,7 @@ urlpatterns = [
     path('fixer-rendez-vous/',views.fixerRdv,name="fixerRdv"),
     path('login/',views.login_view,name="login"),
     path('sing-in/',views.sign_in,name="sign_in"),
-    path('log-out/',views.log_out,name="log_out")
+    path('log-out/',views.log_out,name="log_out"),
+    re_path(r'^traiter-dossier/(?P<id>\w+)/$',views.traiteDossier,name="traiteDossier"),
+    re_path(r'^annuler-dossier/(?P<id>\w+)/$',views.annulerDossier,name="annulerDossier"),
 ]

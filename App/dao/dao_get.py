@@ -25,10 +25,24 @@ class dao_get(object):
     @staticmethod
     def getDossierByAvocat(id):
         try:
-            return Dossier.objects.filter(NumAvocat_id=id).order_by('-id')
+            return Dossier.objects.filter(NumAvocat_id=id,traiter=False,annuler=False).order_by('-id')
+        except:
+            return None
+
+    @staticmethod
+    def getDossierTraiter(id):
+        try:
+            return Dossier.objects.filter(NumAvocat_id=id,traiter=True)
         except:
             return None
         
+    
+    @staticmethod
+    def getDossierAnnuler(id):
+        try:
+            return Dossier.objects.filter(NumAvocat_id=id,annuler=True)
+        except:
+            return None
             
     @staticmethod
     def getAvocat():
@@ -128,5 +142,26 @@ class dao_get(object):
     def NewDossier(NumAvoc):
         try:
             return Dossier.objects.filter(NumAvocat_id=NumAvoc,consulter=False)
+        except:
+            return None
+        
+
+    @staticmethod
+    def traiterDossier(id):
+        try:
+            dos = Dossier.objects.get(id=id)
+            dos.traiter = True
+            dos.save()
+            return dos
+        except:
+            return None
+        
+    @staticmethod
+    def annulerDossier(id):
+        try:
+            dos = Dossier.objects.get(id=id)
+            dos.annuler = True
+            dos.save()
+            return dos
         except:
             return None

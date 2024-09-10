@@ -1,5 +1,12 @@
 val = document.getElementById('valchart')
+val2 = document.getElementById('valchart2')
+val3 = document.getElementById('valchart3')
+val4 = document.getElementById('valchart4')
 v = val.value
+v2 = val2.value
+v3 = val3.value
+v4 = val4.value
+
 var options = {
 	series: [v],
 	grid: {
@@ -71,7 +78,7 @@ var options = {
 };
 
 var options2 = {
-	series: [70],
+	series: [v2],
 	grid: {
 		padding: {
 			top: 0,
@@ -141,7 +148,7 @@ var options2 = {
 };
 
 var options3 = {
-	series: [75],
+	series: [v3],
 	grid: {
 		padding: {
 			top: 0,
@@ -211,7 +218,7 @@ var options3 = {
 };
 
 var options4 = {
-	series: [85],
+	series: [v4],
 	grid: {
 		padding: {
 			top: 0,

@@ -13,7 +13,8 @@ class Dossier(models.Model):
     NumAvocat=models.ForeignKey('Avocat', related_name='AvocDos', null=True, blank=True, on_delete=models.CASCADE)
     is_ready=models.BooleanField(default=False)
     consulter = models.BooleanField(default=False)
-
+    traiter = models.BooleanField(default=False)
+    annuler = models.BooleanField(default=False)
 
 class EvoDossier(models.Model):
     dossier=models.ForeignKey('Dossier', related_name='dossier_evo', null=True, blank=True, on_delete=models.CASCADE)
