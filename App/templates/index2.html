@@ -295,9 +295,13 @@
 							<li class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 								<div class="contact-directory-box">
 									<div class="contact-dire-info text-center">
-										
-										<span class="micon dw dw-folder"></span> N° Dossier : {{Dossiers.id}}
-										
+										{%if Dossiers.consulter == True%}
+										<span class="micon dw dw-folder"></span>
+										{%else%}
+										<i class="icon-copy dw dw-folder-1"></i>
+										{%endif%}
+										 N° Dossier : {{Dossiers.id}}
+									
 										<div class="contact-name">
 											<h4>{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</h4>
 											<p>{{Dossiers.Date_create.date}}</p>

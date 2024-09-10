@@ -12,21 +12,34 @@ from django.shortcuts import redirect
 # Create your views here.
 
 def index(request):
-    getuser = request.user.id
-    idAvoct = dao_get.getAvocatByUser(getuser)
-    getAvocat = dao_get.getAvocat()
-    getDossier = dao_get.getDossier()
-    getDosByAvoc = dao_get.getDossierByAvocat(idAvoct.id)
-    context = {"Dossier":getDossier,"Avocat":getAvocat,'DossierAvocat':getDosByAvoc}
-    template = loader.get_template('index2.html')
-    return HttpResponse(template.render(context, request))
+    try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        getAvocat = dao_get.getAvocat()
+        getDossier = dao_get.getDossier()
+        getDosByAvoc = dao_get.getDossierByAvocat(idAvoct.id)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
+        context = {"Dossier":getDossier,"Avocat":getAvocat,'DossierAvocat':getDosByAvoc,'alert':alert,"s":s}
+        template = loader.get_template('index2.html')
+        return HttpResponse(template.render(context, request))
+    except Exception as e:
+        return e
 
 
 def datatable(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         getClient = dao_get.getClient()
 
-        context = {"Client":getClient}
+        context = {"Client":getClient,'alert':alert,"s":s}
         template = loader.get_template('datatable.html')
         return HttpResponse(template.render(context, request))
     
@@ -36,8 +49,14 @@ def datatable(request):
 
 def mesdossier(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         getDossier = dao_get.getDossier()
-        context = {"Dossier":getDossier}
+        context = {"Dossier":getDossier,'alert':alert,"s":s}
         template = loader.get_template('mesdossier.html')
         return HttpResponse(template.render(context, request))
     
@@ -46,9 +65,16 @@ def mesdossier(request):
     
 def datadossier(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
+
         getAvocat = dao_get.getAvocat()
         getDossier = dao_get.getDossier()
-        context = {"Dossier":getDossier,"Avocat":getAvocat}
+        context = {"Dossier":getDossier,"Avocat":getAvocat,'alert':alert,"s":s}
         template = loader.get_template('datadossier.html')
         return HttpResponse(template.render(context, request))
     except Exception as e:
@@ -56,13 +82,19 @@ def datadossier(request):
 
 def sendDate(request,id):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         if request.method == "POST":
             NumAvocat = request.POST.get('NumAvocat', None)
             idDossier = request.POST.get('idDossier', None)
             data = dao_get.getDossierById(idDossier,NumAvocat)
             if data:
                 getDossier = dao_get.getDossier()
-                context={"Dossier":getDossier}
+                context={"Dossier":getDossier,'alert':alert,"s":s}
                 template = loader.get_template('datadossier.html')
                 return HttpResponse(template.render(context, request))
     except Exception as e:
@@ -71,9 +103,15 @@ def sendDate(request,id):
 
 def dataAvocat(request,id):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         getAvocat = dao_get.getAvocat()
         idDossier = id
-        context = {'Avocat':getAvocat,"idDossier":idDossier}
+        context = {'Avocat':getAvocat,"idDossier":idDossier,'alert':alert,"s":s}
         template = loader.get_template('dataAvocat.html')
         return HttpResponse(template.render(context, request))
     
@@ -83,9 +121,15 @@ def dataAvocat(request,id):
 
 def forms(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         getClient = dao_get.getClient()
 
-        context = {"Client":getClient}
+        context = {"Client":getClient,'alert':alert,"s":s}
         template = loader.get_template('forms.html')
         return HttpResponse(template.render(context, request))
     
@@ -94,6 +138,12 @@ def forms(request):
     
 def formSend(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         get_idClient = ""
         if request.method == "POST":
             # data for client
@@ -132,7 +182,7 @@ def formSend(request):
 
         getClient = dao_get.getClient()
 
-        context = {"Client":getClient}
+        context = {"Client":getClient,'alert':alert,"s":s}
         template = loader.get_template('forms.html')
         return HttpResponse(template.render(context, request))
     
@@ -142,6 +192,12 @@ def formSend(request):
 
 def formsSave(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         if request.method == "POST":
             
             ClientId = request.POST.get('Client', None)
@@ -162,7 +218,7 @@ def formsSave(request):
 
         getClient = dao_get.getClient()
 
-        context = {"Client":getClient}
+        context = {"Client":getClient,'alert':alert,"s":s}
         template = loader.get_template('forms.html')
         return HttpResponse(template.render(context, request))
     
@@ -171,15 +227,22 @@ def formsSave(request):
     
 def rdv(request,id):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         
         getDossier = dao_get.getDossierById(id)
+        dao_get.views_dossier(id)
         avocat = getDossier.NumAvocat.id
         client = getDossier.Numclient.id
         element = getDossier.ElemDoss
         attente = getDossier.AttentDoss
         avis = getDossier.AvisDoss
         filterDossier = dao_get.FilterDossierById(id)
-        context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':id,'DossierAvocat':filterDossier}
+        context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':id,'DossierAvocat':filterDossier,'alert':alert,"s":s}
         template = loader.get_template('dossier.html')
         return HttpResponse(template.render(context, request))
 
@@ -188,6 +251,12 @@ def rdv(request,id):
     
 def updateDossier(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         if request.method == "POST":
             ElemDoss = request.POST.get('ElemDoss', None)
             AttentDoss = request.POST.get('AttentDoss', None)
@@ -205,7 +274,7 @@ def updateDossier(request):
                 attente = getDossier.AttentDoss
                 avis = getDossier.AvisDoss
                 succes1 = "Modification des informations sur le dossier!"
-                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes1':succes1}
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes1':succes1,'alert':alert,"s":s}
                 template = loader.get_template('dossier.html')
                 return HttpResponse(template.render(context, request))
 
@@ -215,6 +284,12 @@ def updateDossier(request):
 
 def fixerRdv(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         if request.method == "POST":
             MotifRendez = request.POST.get('MotifRendez', None)
             ObserRendez = request.POST.get('ObserRendez', None)
@@ -233,7 +308,7 @@ def fixerRdv(request):
                 attente = getDossier.AttentDoss
                 avis = getDossier.AvisDoss
                 succes2 = "Vous venez de fixé un rendez-vous sur ce dossier!"
-                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes2':succes2}
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes2':succes2,'alert':alert,"s":s}
                 template = loader.get_template('dossier.html')
                 return HttpResponse(template.render(context, request))
             
@@ -246,8 +321,14 @@ def fixerRdv(request):
 
 def Repertoire(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         repertoire = dao_get.repertoire()
-        context = {'repertoire':repertoire}
+        context = {'repertoire':repertoire,'alert':alert,"s":s}
         template = loader.get_template('repetoire.html')
         return HttpResponse(template.render(context, request))
     
@@ -256,8 +337,14 @@ def Repertoire(request):
 
 def ListeDossierClient(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         dossier = dao_get.getDossier()
-        context = {'dossier':dossier}
+        context = {'dossier':dossier,'alert':alert,"s":s}
         template = loader.get_template('listedossiercleint.html')
         return HttpResponse(template.render(context, request))
     
@@ -267,8 +354,14 @@ def ListeDossierClient(request):
 
 def ListePaiementClient(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
         paiement = dao_get.paiement()
-        context = {'paiement':paiement}
+        context = {'paiement':paiement,'alert':alert,"s":s}
         template = loader.get_template('listepaiementclient.html')
         return HttpResponse(template.render(context, request))
     
@@ -277,9 +370,15 @@ def ListePaiementClient(request):
     
 def ListeDossierPeriode(request):
     try:
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
 
         dossier = dao_get.getDossier()
-        context = {'dossier':dossier}
+        context = {'dossier':dossier,'alert':alert,"s":s}
         template = loader.get_template('listedossierperiode.html')
         return HttpResponse(template.render(context, request))
     
@@ -288,8 +387,13 @@ def ListeDossierPeriode(request):
     
 def ClientsConsulte(request):
     try:
-
-        context = {}
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
+        context = {'alert':alert,"s":s}
         template = loader.get_template('clientconsulte.html')
         return HttpResponse(template.render(context, request))
     
@@ -299,7 +403,13 @@ def ClientsConsulte(request):
 
 def login_view(request):
     try:
-        context = {}
+        s=""
+        getuser = request.user.id
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        alert = dao_get.NewDossier(idAvoct.id)
+        if alert:
+            s = "vrai"
+        context = {'alert':alert,"s":s}
         template = loader.get_template('login.html')
         return HttpResponse(template.render(context, request))
     

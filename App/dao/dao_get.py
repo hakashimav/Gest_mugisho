@@ -77,6 +77,16 @@ class dao_get(object):
             return None
         
     @staticmethod
+    def views_dossier(id):
+        try:
+            dos = Dossier.objects.get(id=id)
+            dos.consulter = True
+            dos.save()
+            return dos
+        except:
+            return None
+        
+    @staticmethod
     def FilterDossierById(id):
         try:
             return Dossier.objects.filter(id=id)
@@ -106,3 +116,11 @@ class dao_get(object):
                 return user
         except Exception as e:
             print("IL Y A PAS D'UTILISATEUR AVEC CETTE IDENTIFIANT  Backend((getUtilisateur)) err=",e)
+
+
+    @staticmethod
+    def NewDossier(NumAvoc):
+        try:
+            return Dossier.objects.filter(NumAvocat_id=NumAvoc,consulter=False)
+        except:
+            return None
