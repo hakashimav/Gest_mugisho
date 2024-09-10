@@ -60,9 +60,13 @@ def mesdossier(request):
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
         alert = dao_get.NewDossier(idAvoct.id)
+        idAvoct = dao_get.getAvocatByUser(getuser)
+        if idAvoct:
+            idAv = idAvoct.id
         if alert:
             s = "vrai"
-        getDossier = dao_get.getDossier()
+        getDossier = dao_get.getDossierByAvocat(idAv)
+
         context = {"Dossier":getDossier,'alert':alert,"s":s}
         template = loader.get_template('mesdossier.html')
         return HttpResponse(template.render(context, request))
