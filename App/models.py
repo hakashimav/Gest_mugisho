@@ -15,6 +15,16 @@ class Dossier(models.Model):
     consulter = models.BooleanField(default=False)
 
 
+class EvoDossier(models.Model):
+    dossier=models.ForeignKey('Dossier', related_name='dossier_evo', null=True, blank=True, on_delete=models.CASCADE)
+    ElemDoss=models.CharField(max_length=150,null=True,blank=True)
+    AttentDoss=models.CharField(max_length=150,null=True,blank=True)
+    AvisDoss=models.CharField(max_length=150,null=True,blank=True)
+    Date_create=models.DateTimeField(auto_now_add=True)
+    is_ready=models.BooleanField(default=False)
+    consulter = models.BooleanField(default=False)
+
+
 class Client(models.Model):
     PrenonCient=models.CharField(max_length=150,null=True,blank=True)
     NomClient=models.CharField(max_length=150,null=True,blank=True)

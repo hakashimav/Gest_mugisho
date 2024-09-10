@@ -244,6 +244,7 @@ def formsSave(request):
 def rdv(request,id):
     try:
         s=""
+
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
         alert = dao_get.NewDossier(idAvoct.id)
@@ -251,13 +252,21 @@ def rdv(request,id):
             s = "vrai"
         
         getDossier = dao_get.getDossierById(id)
+        getEvoDossier = dao_get.getDossierEvo(id)
         dao_get.views_dossier(id)
         avocat = getDossier.NumAvocat.id
         client = getDossier.Numclient.id
-        element = getDossier.ElemDoss
-        attente = getDossier.AttentDoss
-        avis = getDossier.AvisDoss
+        if getEvoDossier:
+            element = getEvoDossier.ElemDoss
+            attente = getEvoDossier.AttentDoss
+            avis = getEvoDossier.AvisDoss
+        else:
+            element = getDossier.ElemDoss
+            attente = getDossier.AttentDoss
+            avis = getDossier.AvisDoss
+
         filterDossier = dao_get.FilterDossierById(id)
+
         context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':id,'DossierAvocat':filterDossier,'alert':alert,"s":s}
         template = loader.get_template('dossier.html')
         return HttpResponse(template.render(context, request))
@@ -280,19 +289,25 @@ def updateDossier(request):
             AttentDoss = request.POST.get('AttentDoss', None)
             AvisDoss = request.POST.get('AvisDoss', None)
             IdDossier = request.POST.get('IdDossier', None)
-            now = timezone.now()
             
-            data = dao_get.updateDossier(IdDossier,ElemDoss,AttentDoss,AvisDoss,now)
+            data = dao_get.updateDossier(IdDossier,ElemDoss,AttentDoss,AvisDoss)
 
             if data:
                 getDossier = dao_get.getDossierById(IdDossier)
+                getEvoDossier = dao_get.getDossierEvo(IdDossier)
                 avocat = getDossier.NumAvocat.id
                 client = getDossier.Numclient.id
-                element = getDossier.ElemDoss
-                attente = getDossier.AttentDoss
-                avis = getDossier.AvisDoss
+                if getEvoDossier:
+                    element = getEvoDossier.ElemDoss
+                    attente = getEvoDossier.AttentDoss
+                    avis = getEvoDossier.AvisDoss
+                else:
+                    element = getDossier.ElemDoss
+                    attente = getDossier.AttentDoss
+                    avis = getDossier.AvisDoss
+                filterDossier = dao_get.FilterDossierById(IdDossier)
                 succes1 = "Modification des informations sur le dossier!"
-                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes1':succes1,'alert':alert,"s":s}
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes1':succes1,'DossierAvocat':filterDossier,'alert':alert,"s":s}
                 template = loader.get_template('dossier.html')
                 return HttpResponse(template.render(context, request))
 
@@ -321,13 +336,20 @@ def fixerRdv(request):
 
             if data:
                 getDossier = dao_get.getDossierById(IdDossier)
+                getEvoDossier = dao_get.getDossierEvo(IdDossier)
                 avocat = getDossier.NumAvocat.id
                 client = getDossier.Numclient.id
-                element = getDossier.ElemDoss
-                attente = getDossier.AttentDoss
-                avis = getDossier.AvisDoss
+                if getEvoDossier:
+                    element = getEvoDossier.ElemDoss
+                    attente = getEvoDossier.AttentDoss
+                    avis = getEvoDossier.AvisDoss
+                else:
+                    element = getDossier.ElemDoss
+                    attente = getDossier.AttentDoss
+                    avis = getDossier.AvisDoss
+                filterDossier = dao_get.FilterDossierById(IdDossier)
                 succes2 = "Vous venez de fixé un rendez-vous sur ce dossier!"
-                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes2':succes2,'alert':alert,"s":s}
+                context = {'avocat':avocat,'client':client,'element':element,'attente':attente,'avis':avis,'idDossier':IdDossier,'succes2':succes2,'DossierAvocat':filterDossier,'alert':alert,"s":s}
                 template = loader.get_template('dossier.html')
                 return HttpResponse(template.render(context, request))
             

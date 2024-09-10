@@ -175,7 +175,7 @@
 											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Fixé un rendez-vous</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#data" role="tab">Donnée</a>
+											<a class="nav-link" data-toggle="tab" href="#data" role="tab">Evolution Dossier</a>
 										</li>
 									</ul>
 									<div class="tab-content">
@@ -258,29 +258,27 @@
 															<!-- Export Datatable start -->
 															<div class="card-box mb-30">
 																<div class="pd-20">
-																	<h4 class="text-blue h4">Données sur le dossier</h4>
+																	<h4 class="text-blue h4">Données sur l'evolution dossier</h4>
 																</div>
 																<div class="pb-20">
 																	<table class="table hover multiple-select-row data-table-export nowrap">
 																		<thead>
 																			<tr>
-																				<th class="table-plus datatable-nosort">Noms Client</th>
+																				<th class="table-plus datatable-nosort">Client</th>
 																				<th>Elément</th>
 																				<th>Attente</th>
 																				<th>Avis</th>
-																				<th>Date création</th>
-																				<th>Date modification</th>
+																				<th>Date</th>
 																			</tr>
 																		</thead>
 																		<tbody>
 																			{%for Dossiers in DossierAvocat%}
 																			<tr>
-																				<td class="table-plus">{{Dossiers.Numclient.PrenonCient}} {{Dossiers.Numclient.NomClient}}</td>
+																				<td class="table-plus">{{Dossiers.dossier.Numclient.PrenonCient}} {{Dossiers.dossier.Numclient.NomClient}}</td>
 																				<td>{{Dossiers.ElemDoss}}</td>
 																				<td>{{Dossiers.AttentDoss}}</td>
 																				<td>{{Dossiers.AvisDoss}} </td>
 																				<td>{{Dossiers.Date_create.date}}</td>
-																				<td>{{Dossiers.Date_modification.date}}</td>
 																			</tr>
 																			{%endfor%}
 																		</tbody>

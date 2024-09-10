@@ -77,6 +77,12 @@ class dao_get(object):
             return None
         
     @staticmethod
+    def getDossierEvo(id):
+        try:
+            return EvoDossier.objects.filter(dossier_id=id).last()
+        except:
+            return None
+    @staticmethod
     def views_dossier(id):
         try:
             dos = Dossier.objects.get(id=id)
@@ -89,18 +95,18 @@ class dao_get(object):
     @staticmethod
     def FilterDossierById(id):
         try:
-            return Dossier.objects.filter(id=id)
+            return EvoDossier.objects.filter(dossier_id=id)
         except:
             return None
         
     @staticmethod
-    def updateDossier(idDossier,element,attent,avis,now):
+    def updateDossier(idDossier,element,attent,avis):
         try:
-            dos = Dossier.objects.get(id=idDossier)
+            dos = EvoDossier()
+            dos.dossier_id = idDossier
             dos.ElemDoss = element
             dos.AttentDoss = attent
             dos.AvisDoss = avis
-            dos.Date_modification = now
             dos.save()
             return dos
 
