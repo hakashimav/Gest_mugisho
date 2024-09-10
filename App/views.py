@@ -97,16 +97,9 @@ def mesdossier(request):
 @login_required(login_url='login')
 def datadossier(request):
     try:
-        s=""
-        getuser = request.user.id
-        idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
-
         getAvocat = dao_get.getAvocat()
         getDossier = dao_get.getDossier()
-        context = {"Dossier":getDossier,"Avocat":getAvocat,'alert':alert,"s":s}
+        context = {"Dossier":getDossier,"Avocat":getAvocat}
         template = loader.get_template('datadossier.html')
         return HttpResponse(template.render(context, request))
     except Exception as e:
@@ -156,15 +149,10 @@ def dataAvocat(request,id):
 @login_required(login_url='login')
 def forms(request):
     try:
-        s=""
-        getuser = request.user.id
-        idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
+
         getClient = dao_get.getClient()
 
-        context = {"Client":getClient,'alert':alert,"s":s}
+        context = {"Client":getClient}
         template = loader.get_template('forms.html')
         return HttpResponse(template.render(context, request))
     
